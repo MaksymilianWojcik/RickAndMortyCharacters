@@ -5,9 +5,11 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import pl.com.bubka.rickandmortycharacters.models.Character;
 
 @Database(entities = {Character.class}, version = 1)
+@TypeConverters({RoomConverters.class})
 public abstract class CharacterDatabase extends RoomDatabase {
 
     public static final String DATABASE_NAME = "characters_db";

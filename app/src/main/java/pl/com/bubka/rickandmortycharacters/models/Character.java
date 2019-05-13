@@ -37,7 +37,7 @@ public class Character implements Parcelable {
     private String imageUrl;
 
     @ColumnInfo(name = "episodes")
-    private String[] episodes; //TODO: converters
+    private String[] episodes;
 
     @ColumnInfo(name = "url")
     private String url;
