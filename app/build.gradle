@@ -27,7 +27,29 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
     def materialVersion = "1.0.0-rc01"
+    def lifecycleVersion = "2.0.0-rc01"
+    def supportVersion = "1.0.0"
+    def retrofitVersion = "2.5.0"
+    def glideVersion = "4.8.0"
+    def okHttpVersion = "3.13.1"
 
     //support design
     implementation "com.google.android.material:material:${materialVersion}"
+
+    //live data - czy to nie jest domyslnie ?
+    implementation "androidx.lifecycle:lifecycle-extensions:${lifecycleVersion}"
+
+    implementation "androidx.cardview:cardview:${supportVersion}"
+    implementation "androidx.recyclerview:recyclerview:${supportVersion}"
+    implementation "androidx.room:room-runtime:${lifecycleVersion}"
+    implementation "androidx.room:room-compiler:${lifecycleVersion}"
+
+    //retrofit, okhttp
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+
+    //glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 }
