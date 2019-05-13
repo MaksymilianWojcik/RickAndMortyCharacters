@@ -5,29 +5,55 @@ import android.os.Parcelable;
 
 import java.util.Arrays;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+
+@Entity(tableName = "characters")
 public class Character implements Parcelable {
 
+    @PrimaryKey
+    @NonNull
     private int id;
+
+    @ColumnInfo(name = "name")
     private String name;
+
+    @ColumnInfo(name = "species")
     private String species;
+
+    @ColumnInfo(name = "type")
     private String type;
+
+    @ColumnInfo(name = "gender")
     private String gender;
-//    private Origin origin;
-//    private Location location;
-    private String imareUrl;
-    private String[] episodes;
+
+//TODO:    private Origin origin;
+//TODO:    private Location location;
+
+    @ColumnInfo(name = "imageUrl")
+    private String imageUrl;
+
+    @ColumnInfo(name = "episodes")
+    private String[] episodes; //TODO: converters
+
+    @ColumnInfo(name = "url")
     private String url;
+
+    @ColumnInfo(name = "createdDate")
     private String createdDate;
 
     public Character(){}
 
-    public Character(int id, String name, String species, String type, String gender, String imareUrl, String[] episodes, String url, String createdDate) {
+    public Character(int id, String name, String species, String type, String gender, String imageUrl, String[] episodes, String url, String createdDate) {
         this.id = id;
         this.name = name;
         this.species = species;
         this.type = type;
         this.gender = gender;
-        this.imareUrl = imareUrl;
+        this.imageUrl = imageUrl;
         this.episodes = episodes;
         this.url = url;
         this.createdDate = createdDate;
@@ -39,7 +65,7 @@ public class Character implements Parcelable {
         species = in.readString();
         type = in.readString();
         gender = in.readString();
-        imareUrl = in.readString();
+        imageUrl = in.readString();
         episodes = in.createStringArray();
         url = in.readString();
         createdDate = in.readString();
@@ -52,7 +78,7 @@ public class Character implements Parcelable {
         dest.writeString(species);
         dest.writeString(type);
         dest.writeString(gender);
-        dest.writeString(imareUrl);
+        dest.writeString(imageUrl);
         dest.writeStringArray(episodes);
         dest.writeString(url);
         dest.writeString(createdDate);
@@ -115,12 +141,12 @@ public class Character implements Parcelable {
         this.gender = gender;
     }
 
-    public String getImareUrl() {
-        return imareUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImareUrl(String imareUrl) {
-        this.imareUrl = imareUrl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String[] getEpisodes() {
@@ -155,7 +181,7 @@ public class Character implements Parcelable {
                 ", species='" + species + '\'' +
                 ", type='" + type + '\'' +
                 ", gender='" + gender + '\'' +
-                ", imareUrl='" + imareUrl + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 ", episodes=" + Arrays.toString(episodes) +
                 ", url='" + url + '\'' +
                 ", createdDate='" + createdDate + '\'' +
