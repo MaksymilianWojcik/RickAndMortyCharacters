@@ -3,6 +3,8 @@ package pl.com.bubka.rickandmortycharacters.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Arrays;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,9 @@ public class Character implements Parcelable {
     @ColumnInfo(name = "name")
     private String name;
 
+    @ColumnInfo(name = "status")
+    private String status;
+
     @ColumnInfo(name = "species")
     private String species;
 
@@ -34,22 +39,26 @@ public class Character implements Parcelable {
 //TODO:    private Location location;
 
     @ColumnInfo(name = "imageUrl")
+    @SerializedName("image")
     private String imageUrl;
 
     @ColumnInfo(name = "episodes")
+    @SerializedName("episode")
     private String[] episodes;
 
     @ColumnInfo(name = "url")
     private String url;
 
     @ColumnInfo(name = "createdDate")
+    @SerializedName("created")
     private String createdDate;
 
     public Character(){}
 
-    public Character(int id, String name, String species, String type, String gender, String imageUrl, String[] episodes, String url, String createdDate) {
+    public Character(int id, String name, String status, String species, String type, String gender, String imageUrl, String[] episodes, String url, String createdDate) {
         this.id = id;
         this.name = name;
+        this.status = status;
         this.species = species;
         this.type = type;
         this.gender = gender;
@@ -62,6 +71,7 @@ public class Character implements Parcelable {
     protected Character(Parcel in){
         id = in.readInt();
         name = in.readString();
+        status = in.readString();
         species = in.readString();
         type = in.readString();
         gender = in.readString();
@@ -75,6 +85,7 @@ public class Character implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(name);
+        dest.writeString(status);
         dest.writeString(species);
         dest.writeString(type);
         dest.writeString(gender);
@@ -115,6 +126,14 @@ public class Character implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getSpecies() {
@@ -178,6 +197,7 @@ public class Character implements Parcelable {
         return "Character{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
                 ", species='" + species + '\'' +
                 ", type='" + type + '\'' +
                 ", gender='" + gender + '\'' +
