@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import pl.com.bubka.rickandmortycharacters.utils.Constants;
+import pl.com.bubka.rickandmortycharacters.utils.LiveDataCallAdapterFactory;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -18,8 +19,8 @@ public class ServiceGenerator {
             new Retrofit.Builder()
                     .baseUrl(Constants.BASE_URL)
                     .client(okHttpClient)
-//                    .addCallAdapterFactory(new LiveDataCallAdapterFactory()) //TODO: change Call for Livedata
-                    .addConverterFactory(GsonConverterFactory.create());
+                    .addCallAdapterFactory(new LiveDataCallAdapterFactory())
+                    .addConverterFactory(GsonConverterFactory.create()); //TODO: dodac logginterecopty
 
     private static Retrofit retrofit = retrofitBuilder.build();
 
