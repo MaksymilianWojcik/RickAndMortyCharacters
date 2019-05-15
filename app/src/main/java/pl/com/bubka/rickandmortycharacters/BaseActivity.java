@@ -22,11 +22,11 @@ public class BaseActivity extends AppCompatActivity {
         super.setContentView(layoutResID);
     }
 
-    public void showProgressBar(){
+    public void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    public void hideProgressBar(){
+    public void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
     }
 

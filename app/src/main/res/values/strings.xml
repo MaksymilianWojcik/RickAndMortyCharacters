@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RickAndMortyCharacters</string>
+    <string name="error_getting_results">Error getting results\nCheck internet connection</string>
 </resources>

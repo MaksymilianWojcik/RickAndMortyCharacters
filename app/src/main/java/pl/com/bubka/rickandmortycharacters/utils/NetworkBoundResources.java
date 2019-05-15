@@ -17,12 +17,12 @@ public abstract class NetworkBoundResources<CacheObject, RequestObject> {
     private MediatorLiveData<Resource<CacheObject>> results = new MediatorLiveData<>();
 
 
-    public NetworkBoundResources(AppExecutors executors){
+    public NetworkBoundResources(AppExecutors executors) {
         this.executors = executors;
         init();
     }
 
-    private void init(){
+    private void init() {
 
         results.setValue((Resource<CacheObject>) Resource.loading(null)); //we have nothing yet
         final LiveData<CacheObject> dbSource = loadFromDb();
@@ -32,7 +32,7 @@ public abstract class NetworkBoundResources<CacheObject, RequestObject> {
             public void onChanged(CacheObject cacheObject) {
                 results.removeSource(dbSource);
 
-                if(shouldFetch(cacheObject)){
+                if (shouldFetch(cacheObject)) {
                     fetchFromNetwork(dbSource);
                 } else {
                     results.addSource(dbSource, new Observer<CacheObject>() {
@@ -46,7 +46,7 @@ public abstract class NetworkBoundResources<CacheObject, RequestObject> {
         });
     }
 
-    private void fetchFromNetwork(final LiveData<CacheObject> dbSource){
+    private void fetchFromNetwork(final LiveData<CacheObject> dbSource) {
         results.addSource(dbSource, new Observer<CacheObject>() {
             @Override
             public void onChanged(CacheObject cacheObject) {
@@ -61,7 +61,7 @@ public abstract class NetworkBoundResources<CacheObject, RequestObject> {
                 results.removeSource(dbSource);
                 results.removeSource(apiResponse);
 
-                if(requestObjectApiResponse instanceof ApiResponse.SuccesResponse){
+                if (requestObjectApiResponse instanceof ApiResponse.SuccesResponse) {
 
                     executors.diskIO().execute(new Runnable() {
                         @Override
@@ -81,7 +81,7 @@ public abstract class NetworkBoundResources<CacheObject, RequestObject> {
                         }
                     });
 
-                } else if (requestObjectApiResponse instanceof ApiResponse.EmptyResponse){
+                } else if (requestObjectApiResponse instanceof ApiResponse.EmptyResponse) {
                     executors.mainThread().execute(new Runnable() {
                         @Override
                         public void run() {
@@ -93,11 +93,11 @@ public abstract class NetworkBoundResources<CacheObject, RequestObject> {
                             });
                         }
                     });
-                } else if (requestObjectApiResponse instanceof ApiResponse.ErrorResponse){
+                } else if (requestObjectApiResponse instanceof ApiResponse.ErrorResponse) {
                     results.addSource(dbSource, new Observer<CacheObject>() {
                         @Override
                         public void onChanged(@Nullable CacheObject cacheObject) {
-                            setValue(Resource.error(((ApiResponse.ErrorResponse)requestObjectApiResponse).getErrorMessage(), cacheObject));
+                            setValue(Resource.error(((ApiResponse.ErrorResponse) requestObjectApiResponse).getErrorMessage(), cacheObject));
                         }
                     });
                 }

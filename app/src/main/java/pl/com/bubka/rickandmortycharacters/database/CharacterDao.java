@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.TypeConverters;
 import androidx.room.Update;
 import pl.com.bubka.rickandmortycharacters.models.Character;
 
@@ -27,7 +26,6 @@ public interface CharacterDao {
 //    @Query("UPDATE characters SET name = :name, status = :status, species = :species, type = :type, gender = :gender, imageUrl = :imageUrl, episodes = " + ":episodes, url = :url, createdDate = :createdDate " +
 //            "WHERE character_id = :character_id")
 //    void updateCharacter(String character_id, String name, String status, String species, String type, String gender, String imageUrl, String[] episodes, String url, String createdDate);
-
 
     @Update
     void updateCharacter(Character characters);

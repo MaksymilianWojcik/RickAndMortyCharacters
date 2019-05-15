@@ -1,33 +1,5 @@
 package pl.com.bubka.rickandmortycharacters.views;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import pl.com.bubka.rickandmortycharacters.AppExecutors;
-import pl.com.bubka.rickandmortycharacters.BaseActivity;
-import pl.com.bubka.rickandmortycharacters.R;
-import pl.com.bubka.rickandmortycharacters.adapters.CharactersRecyclerAdapter;
-import pl.com.bubka.rickandmortycharacters.database.CharacterDatabase;
-import pl.com.bubka.rickandmortycharacters.models.Character;
-import pl.com.bubka.rickandmortycharacters.requests.RickAndMortyApi;
-import pl.com.bubka.rickandmortycharacters.requests.ServiceGenerator;
-import pl.com.bubka.rickandmortycharacters.requests.responses.ApiResponse;
-import pl.com.bubka.rickandmortycharacters.requests.responses.CharacterSearchResponse;
-import pl.com.bubka.rickandmortycharacters.utils.NetworkBoundResources;
-import pl.com.bubka.rickandmortycharacters.utils.Resource;
-import pl.com.bubka.rickandmortycharacters.utils.VerticalSpacingItemDecorator;
-import pl.com.bubka.rickandmortycharacters.viewmodels.CharactersListViewModel;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -37,6 +9,20 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import pl.com.bubka.rickandmortycharacters.BaseActivity;
+import pl.com.bubka.rickandmortycharacters.R;
+import pl.com.bubka.rickandmortycharacters.adapters.CharactersRecyclerAdapter;
+import pl.com.bubka.rickandmortycharacters.models.Character;
+import pl.com.bubka.rickandmortycharacters.utils.Resource;
+import pl.com.bubka.rickandmortycharacters.utils.VerticalSpacingItemDecorator;
+import pl.com.bubka.rickandmortycharacters.viewmodels.CharactersListViewModel;
 
 public class CharactersListActivity extends BaseActivity {
 
@@ -65,16 +51,16 @@ public class CharactersListActivity extends BaseActivity {
     }
 
 
-    private void subscribeObservers(){
+    private void subscribeObservers() {
         charactersListViewModel.getCharacters().observe(this, new Observer<Resource<List<Character>>>() {
             @Override
             public void onChanged(Resource<List<Character>> listResource) {
-                if (listResource != null){
+                if (listResource != null) {
                     Log.i(TAG, "onChanged: status: " + listResource.status);
-                    if (listResource.data != null){
-                        switch(listResource.status){
+                    if (listResource.data != null) {
+                        switch (listResource.status) {
                             case LOADING:
-                                if(charactersListViewModel.getPageNumber() > 1){
+                                if (charactersListViewModel.getPageNumber() > 1) {
                                     adapter.displayLoading();
                                 } else {
                                     adapter.displayOnlyLoading();
@@ -86,7 +72,7 @@ public class CharactersListActivity extends BaseActivity {
                                 adapter.setCharacters(listResource.data);
                                 Toast.makeText(CharactersListActivity.this, listResource.message, Toast.LENGTH_SHORT).show();
 
-                                if(listResource.message.equals("No more results.")){
+                                if (listResource.message.equals("No more results.")) {
                                     adapter.setQueryExhausted();
                                 }
                                 break;
@@ -102,7 +88,7 @@ public class CharactersListActivity extends BaseActivity {
         });
     }
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         adapter = new CharactersRecyclerAdapter(initGlide());
         VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(30);
         recyclerView.addItemDecoration(itemDecorator);
@@ -122,7 +108,7 @@ public class CharactersListActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private RequestManager initGlide(){
+    private RequestManager initGlide() {
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_background); //TODO: icons

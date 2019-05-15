@@ -10,8 +10,8 @@ public class AppExecutors {
 
     private static AppExecutors instance;
 
-    public static AppExecutors getInstance(){
-        if (instance == null){
+    public static AppExecutors getInstance() {
+        if (instance == null) {
             instance = new AppExecutors();
         }
         return instance;
@@ -20,15 +20,15 @@ public class AppExecutors {
     private final Executor mainThreadExecutor = new MainThreadExecutor();
     private final Executor diskIO = Executors.newSingleThreadExecutor();
 
-    public Executor diskIO(){
+    public Executor diskIO() {
         return diskIO;
     }
 
-    public Executor mainThread(){
+    public Executor mainThread() {
         return mainThreadExecutor;
     }
 
-    private static class MainThreadExecutor implements Executor{
+    private static class MainThreadExecutor implements Executor {
 
         private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
 

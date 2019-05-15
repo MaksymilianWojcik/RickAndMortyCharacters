@@ -1,17 +1,20 @@
 package pl.com.bubka.rickandmortycharacters.requests.responses;
 
+import android.content.res.Resources;
+
 import java.io.IOException;
 
+import pl.com.bubka.rickandmortycharacters.R;
 import retrofit2.Response;
 
 public class ApiResponse<T> {
 
-    public ApiResponse<T> create(Throwable error) {
-        return new ErrorResponse<>(error.getMessage().equals("") ? error.getMessage() : "Error getting resulsts\n Check internet connection");
+    public ApiResponse<T> create(Throwable error) { //TODO: ????
+        return new ErrorResponse<>(error.getMessage().equals("") ?  Resources.getSystem().getString(R.string.error_getting_results) : error.getMessage());
     }
 
-    public ApiResponse<T> create(Response<T> response){
-        if(response.isSuccessful()){
+    public ApiResponse<T> create(Response<T> response) {
+        if (response.isSuccessful()) {
             T body = response.body();
 
             if (body == null || response.code() == 204) {
@@ -40,24 +43,24 @@ public class ApiResponse<T> {
             this.body = body;
         }
 
-        public T getBody(){
+        public T getBody() {
             return body;
         }
     }
 
-    public class ErrorResponse<T> extends ApiResponse<T>{
+    public class ErrorResponse<T> extends ApiResponse<T> {
         private String errorMessage;
 
-        public ErrorResponse(String errorMessage){
+        public ErrorResponse(String errorMessage) {
             this.errorMessage = errorMessage;
         }
 
-        public String getErrorMessage(){
+        public String getErrorMessage() {
             return errorMessage;
         }
     }
 
-    public class EmptyResponse<T> extends ApiResponse<T>{
+    public class EmptyResponse<T> extends ApiResponse<T> {
 
     }
 }

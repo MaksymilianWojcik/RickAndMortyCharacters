@@ -25,18 +25,18 @@ public class CharactersRepository {
     private CharacterDao characterDao;
 
     public static CharactersRepository getInstance(Context context) {
-        if(instance == null){
+        if (instance == null) {
             instance = new CharactersRepository(context);
         }
         return instance;
     }
 
-    private CharactersRepository(Context context){
+    private CharactersRepository(Context context) {
         characterDao = CharacterDatabase.getInstance(context).getCharacterDao();
     }
 
-    public LiveData<Resource<List<Character>>> searchCharactersApi(final String name, final int pageNumber){
-        return new NetworkBoundResources<List<Character>, CharacterSearchResponse>(AppExecutors.getInstance()){
+    public LiveData<Resource<List<Character>>> searchCharactersApi(final String name, final int pageNumber) {
+        return new NetworkBoundResources<List<Character>, CharacterSearchResponse>(AppExecutors.getInstance()) {
 
             @Override
             protected void saveCallResult(@NonNull CharacterSearchResponse item) {
@@ -44,8 +44,8 @@ public class CharactersRepository {
                 if (item.getCharactersList() != null) {
                     Character[] characters = new Character[item.getCharactersList().size()];
                     int index = 0;
-                    for(long rowId : characterDao.insertCharacters((Character[])(item.getCharactersList().toArray(characters)))) {
-                        if(rowId == -1) {
+                    for (long rowId : characterDao.insertCharacters((Character[]) (item.getCharactersList().toArray(characters)))) {
+                        if (rowId == -1) {
                             Log.i(TAG, "saveCallResult: Already in cache");
                             characterDao.updateCharacter(characters[index]);
                         }

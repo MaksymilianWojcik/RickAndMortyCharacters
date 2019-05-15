@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData;
 import pl.com.bubka.rickandmortycharacters.requests.responses.ApiResponse;
 import pl.com.bubka.rickandmortycharacters.requests.responses.CharacterDetailsResponse;
 import pl.com.bubka.rickandmortycharacters.requests.responses.CharacterSearchResponse;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;

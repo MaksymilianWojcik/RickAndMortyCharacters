@@ -35,11 +35,11 @@ public class CharactersListViewModel extends AndroidViewModel {
         init();
     }
 
-    private void init(){ //TODO: start with getting all characters
+    private void init() { //TODO: start with getting all characters
 //        searchCharactersApi(null, 1);
     }
 
-    public LiveData<Resource<List<Character>>> getCharacters(){
+    public LiveData<Resource<List<Character>>> getCharacters() {
         return characters;
     }
 
@@ -47,8 +47,8 @@ public class CharactersListViewModel extends AndroidViewModel {
         return pageNumber;
     }
 
-    public void searchCharactersApi(String name, int pageNumber){
-        if(!isPerformingQuery) {
+    public void searchCharactersApi(String name, int pageNumber) {
+        if (!isPerformingQuery) {
             if (pageNumber == 0) {
                 pageNumber = 1;
             }
@@ -59,21 +59,21 @@ public class CharactersListViewModel extends AndroidViewModel {
         }
     }
 
-    public void searchNextPage(){
+    public void searchNextPage() {
         if (!isQueryExhausted && !isPerformingQuery) {
             pageNumber++;
             executeSearch();
         }
     }
 
-    private void executeSearch(){
+    private void executeSearch() {
         cancelRequest = false;
         isPerformingQuery = true;
         final LiveData<Resource<List<Character>>> characterSource = charactersRepository.searchCharactersApi(name, pageNumber);
         characters.addSource(characterSource, new Observer<Resource<List<Character>>>() {
             @Override
             public void onChanged(Resource<List<Character>> listResource) {
-                if(!cancelRequest) {
+                if (!cancelRequest) {
                     if (listResource != null) {
                         characters.setValue(listResource);
                         if (listResource.status == Resource.Status.SUCCESS) {
@@ -99,8 +99,8 @@ public class CharactersListViewModel extends AndroidViewModel {
         });
     }
 
-    public void cancelSearchRequest(){
-        if(isPerformingQuery){
+    public void cancelSearchRequest() {
+        if (isPerformingQuery) {
             Log.d(TAG, "cancelSearchRequest: canceling the search request.");
             cancelRequest = true;
             isPerformingQuery = false;

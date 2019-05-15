@@ -58,7 +58,8 @@ public class Character implements Parcelable {
     @SerializedName("created")
     private String createdDate;
 
-    public Character(){}
+    public Character() {
+    }
 
     public Character(String character_id, String name, String status, String species, String type, String gender, String imageUrl, String[] episodes, String url, String createdDate) {
         this.character_id = character_id;
@@ -73,7 +74,7 @@ public class Character implements Parcelable {
         this.createdDate = createdDate;
     }
 
-    protected Character(Parcel in){
+    protected Character(Parcel in) {
         character_id = in.readString();
         name = in.readString();
         status = in.readString();

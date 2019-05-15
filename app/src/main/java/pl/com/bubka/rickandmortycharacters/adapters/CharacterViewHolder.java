@@ -29,7 +29,7 @@ public class CharacterViewHolder extends RecyclerView.ViewHolder {
         imageView = itemView.findViewById(R.id.character_image);
     }
 
-    public void onBind(Character character){
+    public void onBind(Character character) {
         requestManager.load(character.getImageUrl())
                 .into(imageView);
         name.setText(character.getName());
