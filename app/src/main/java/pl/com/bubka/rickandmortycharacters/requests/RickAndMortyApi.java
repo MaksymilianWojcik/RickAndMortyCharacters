@@ -14,8 +14,6 @@ public interface RickAndMortyApi {
     @GET("api/character/")
     LiveData<ApiResponse<CharacterSearchResponse>> searchCharacters(
             @Query("name") String name,
-            @Query("species") String species,
-            @Query("status") String status,
             @Query("page") String page
     );
 
@@ -23,13 +21,5 @@ public interface RickAndMortyApi {
     LiveData<ApiResponse<CharacterDetailsResponse>> getCharacterDetails(
             @Path("id") String id
     );
-
-    // for testing
-//    @GET("api/character/")
-//    Call<CharacterSearchResponse> searchCharacters(
-//            @Query("name") String name,
-//            @Query("status") String status,
-//            @Query("page") String page
-//    );
 
 }

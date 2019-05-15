@@ -69,7 +69,7 @@ public class CharacterSearchResponse {
         return infoResponse;
     }
 
-    public List<Character> getResultsList() {
+    public List<Character> getCharactersList() {
         return resultsList;
     }
 
