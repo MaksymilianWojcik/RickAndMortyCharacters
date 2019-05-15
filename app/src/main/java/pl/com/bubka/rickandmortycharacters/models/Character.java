@@ -10,7 +10,10 @@ import java.util.Arrays;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+import pl.com.bubka.rickandmortycharacters.database.Converters;
 
 
 @Entity(tableName = "characters")
@@ -18,7 +21,9 @@ public class Character implements Parcelable {
 
     @PrimaryKey
     @NonNull
-    private int id;
+    @SerializedName("id")
+    @ColumnInfo(name = "character_id")
+    private String character_id;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -55,8 +60,8 @@ public class Character implements Parcelable {
 
     public Character(){}
 
-    public Character(int id, String name, String status, String species, String type, String gender, String imageUrl, String[] episodes, String url, String createdDate) {
-        this.id = id;
+    public Character(String character_id, String name, String status, String species, String type, String gender, String imageUrl, String[] episodes, String url, String createdDate) {
+        this.character_id = character_id;
         this.name = name;
         this.status = status;
         this.species = species;
@@ -69,7 +74,7 @@ public class Character implements Parcelable {
     }
 
     protected Character(Parcel in){
-        id = in.readInt();
+        character_id = in.readString();
         name = in.readString();
         status = in.readString();
         species = in.readString();
@@ -83,7 +88,7 @@ public class Character implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
+        dest.writeString(character_id);
         dest.writeString(name);
         dest.writeString(status);
         dest.writeString(species);
@@ -112,12 +117,12 @@ public class Character implements Parcelable {
         }
     };
 
-    public int getId() {
-        return id;
+    public String getCharacter_id() {
+        return character_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCharacter_id(String character_id) {
+        this.character_id = character_id;
     }
 
     public String getName() {
@@ -195,7 +200,7 @@ public class Character implements Parcelable {
     @Override
     public String toString() {
         return "Character{" +
-                "id=" + id +
+                "id=" + character_id +
                 ", name='" + name + '\'' +
                 ", status='" + status + '\'' +
                 ", species='" + species + '\'' +

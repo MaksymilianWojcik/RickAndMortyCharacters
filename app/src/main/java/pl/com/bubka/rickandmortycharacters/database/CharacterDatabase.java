@@ -9,7 +9,7 @@ import androidx.room.TypeConverters;
 import pl.com.bubka.rickandmortycharacters.models.Character;
 
 @Database(entities = {Character.class}, version = 1)
-@TypeConverters({RoomConverters.class})
+@TypeConverters({Converters.class})
 public abstract class CharacterDatabase extends RoomDatabase {
 
     public static final String DATABASE_NAME = "characters_db";
@@ -27,3 +27,6 @@ public abstract class CharacterDatabase extends RoomDatabase {
 
     public abstract CharacterDao getCharacterDao();
 }
+
+
+//TODO: sprawdzic te scheme z versioningiem
