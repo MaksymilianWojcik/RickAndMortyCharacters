@@ -61,7 +61,7 @@ public class CharactersListActivity extends BaseActivity {
         initRecyclerView();
         initSearchView();
         subscribeObservers();
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        setSupportActionBar(findViewById(R.id.toolbar));
     }
 
 
@@ -78,7 +78,6 @@ public class CharactersListActivity extends BaseActivity {
                                     adapter.displayLoading();
                                 } else {
                                     adapter.displayOnlyLoading();
-                                    //szukamy pierwsza storne
                                 }
                                 break;
                             case ERROR:
@@ -155,7 +154,7 @@ public class CharactersListActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-//        charactersListViewModel.cancelSearchRequest(); //TODO: after choosing CHARACTERS, LOCATIONS, EPISODES etc.
+        charactersListViewModel.cancelSearchRequest(); //TODO: after choosing CHARACTERS, LOCATIONS, EPISODES etc. go back to menu screen
         super.onBackPressed();
     }
 }
