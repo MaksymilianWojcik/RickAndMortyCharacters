@@ -8,9 +8,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import pl.com.bubka.rickandmortycharacters.AppExecutors;
+import pl.com.bubka.rickandmortycharacters.BaseActivity;
 import pl.com.bubka.rickandmortycharacters.R;
+import pl.com.bubka.rickandmortycharacters.adapters.CharactersRecyclerAdapter;
 import pl.com.bubka.rickandmortycharacters.database.CharacterDatabase;
 import pl.com.bubka.rickandmortycharacters.models.Character;
 import pl.com.bubka.rickandmortycharacters.requests.RickAndMortyApi;
@@ -19,6 +22,7 @@ import pl.com.bubka.rickandmortycharacters.requests.responses.ApiResponse;
 import pl.com.bubka.rickandmortycharacters.requests.responses.CharacterSearchResponse;
 import pl.com.bubka.rickandmortycharacters.utils.NetworkBoundResources;
 import pl.com.bubka.rickandmortycharacters.utils.Resource;
+import pl.com.bubka.rickandmortycharacters.utils.VerticalSpacingItemDecorator;
 import pl.com.bubka.rickandmortycharacters.viewmodels.CharactersListViewModel;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,12 +30,18 @@ import retrofit2.Response;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
-public class CharactersListActivity extends AppCompatActivity {
+public class CharactersListActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
+    private CharactersRecyclerAdapter adapter;
     private SearchView searchView;
 
     private CharactersListViewModel charactersListViewModel;
@@ -48,9 +58,10 @@ public class CharactersListActivity extends AppCompatActivity {
 
         charactersListViewModel = ViewModelProviders.of(this).get(CharactersListViewModel.class);
 
+        initRecyclerView();
         initSearchView();
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         subscribeObservers();
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
     }
 
 
@@ -64,24 +75,26 @@ public class CharactersListActivity extends AppCompatActivity {
                         switch(listResource.status){
                             case LOADING:
                                 if(charactersListViewModel.getPageNumber() > 1){
-                                    //displayloading
+                                    adapter.displayLoading();
                                 } else {
+                                    adapter.displayOnlyLoading();
                                     //szukamy pierwsza storne
                                 }
                                 break;
                             case ERROR:
                                 Log.e(TAG, "onChanged: ERROR: " + listResource.message);
-                                List<Character> charactersLocal = listResource.data;
-                                for(Character character : charactersLocal){
-                                    Log.i(TAG, "onChanged: characterlocal: " + character.toString());
+                                adapter.hideLoading();
+                                adapter.setCharacters(listResource.data);
+                                Toast.makeText(CharactersListActivity.this, listResource.message, Toast.LENGTH_SHORT).show();
+
+                                if(listResource.message.equals("No more results.")){
+                                    adapter.setQueryExhausted();
                                 }
                                 break;
                             case SUCCESS:
                                 Log.i(TAG, "onChanged: CACJE REFRESJED: " + listResource.data.size());
-                                List<Character> characters = listResource.data;
-                                for(Character character : characters){
-                                    Log.i(TAG, "onChanged: character: " + character.toString());
-                                }
+                                adapter.hideLoading();
+                                adapter.setCharacters(listResource.data);
                                 break;
                         }
                     }
@@ -90,7 +103,36 @@ public class CharactersListActivity extends AppCompatActivity {
         });
     }
 
+    private void initRecyclerView(){
+        adapter = new CharactersRecyclerAdapter(initGlide());
+        VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(30);
+        recyclerView.addItemDecoration(itemDecorator);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (!recyclerView.canScrollVertically(1)) {
+                    charactersListViewModel.searchNextPage();
+                }
+            }
+        });
+
+        recyclerView.setAdapter(adapter);
+    }
+
+    private RequestManager initGlide(){
+        RequestOptions requestOptions = new RequestOptions()
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background); //TODO: icons
+
+        return Glide.with(this).setDefaultRequestOptions(requestOptions);
+    }
+
     private void searchCharactersApi(String name) {
+        recyclerView.smoothScrollToPosition(0);
         charactersListViewModel.searchCharactersApi(name, 1);
         searchView.clearFocus();
     }
@@ -111,4 +153,9 @@ public class CharactersListActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+//        charactersListViewModel.cancelSearchRequest(); //TODO: after choosing CHARACTERS, LOCATIONS, EPISODES etc.
+        super.onBackPressed();
+    }
 }
