@@ -27,6 +27,3 @@ public abstract class CharacterDatabase extends RoomDatabase {
 
     public abstract CharacterDao getCharacterDao();
 }
-
-
-//TODO: sprawdzic te scheme z versioningiem
