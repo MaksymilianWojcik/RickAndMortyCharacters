@@ -18,7 +18,9 @@ public abstract class CharacterDatabase extends RoomDatabase {
 
     public static CharacterDatabase getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context, CharacterDatabase.class, DATABASE_NAME).build();
+            instance = Room.databaseBuilder(context, CharacterDatabase.class, DATABASE_NAME)
+                    .fallbackToDestructiveMigration()
+                    .build();
         }
         return instance;
     }
