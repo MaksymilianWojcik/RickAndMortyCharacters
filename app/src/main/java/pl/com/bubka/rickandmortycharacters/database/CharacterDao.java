@@ -31,7 +31,7 @@ public interface CharacterDao {
     void updateCharacter(Character characters);
 
     @Query("SELECT * FROM characters WHERE name LIKE '%' || :name || '%' " +
-            "ORDER BY name DESC LIMIT (:pageNumber * 20)")
+            "ORDER BY name ASC LIMIT (:pageNumber * 20)")
     LiveData<List<Character>> searchCharacters(String name, int pageNumber);
 
     @Query("SELECT * FROM characters WHERE character_id = :character_id")
