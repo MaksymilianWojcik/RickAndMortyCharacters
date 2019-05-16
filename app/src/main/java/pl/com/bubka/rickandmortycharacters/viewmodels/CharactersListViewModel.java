@@ -32,11 +32,6 @@ public class CharactersListViewModel extends AndroidViewModel {
     public CharactersListViewModel(@NonNull Application application) {
         super(application);
         charactersRepository = CharactersRepository.getInstance(application);
-        init();
-    }
-
-    private void init() { //TODO: start with getting all characters
-//        searchCharactersApi(null, 1);
     }
 
     public LiveData<Resource<List<Character>>> getCharacters() {

@@ -21,7 +21,7 @@
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:queryHint="blimblam..." />
+                app:queryHint="@string/search_view_hint" />
 
         </androidx.appcompat.widget.Toolbar>
 
