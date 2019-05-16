@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 import pl.com.bubka.rickandmortycharacters.BaseActivity;
 import pl.com.bubka.rickandmortycharacters.R;
 import pl.com.bubka.rickandmortycharacters.adapters.CharactersRecyclerAdapter;
@@ -48,6 +49,8 @@ public class CharactersListActivity extends BaseActivity {
         initSearchView();
         subscribeObservers();
         setSupportActionBar(findViewById(R.id.toolbar));
+
+        searchCharactersApi("");
     }
 
 
@@ -110,10 +113,18 @@ public class CharactersListActivity extends BaseActivity {
 
     private RequestManager initGlide() {
         RequestOptions requestOptions = new RequestOptions()
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(initCircularProgressDrawable())
                 .error(R.drawable.ic_launcher_background); //TODO: icons
 
         return Glide.with(this).setDefaultRequestOptions(requestOptions);
+    }
+
+    private CircularProgressDrawable initCircularProgressDrawable(){
+        CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(this);
+        circularProgressDrawable.setStrokeWidth(5f);
+        circularProgressDrawable.setCenterRadius(30f);
+        circularProgressDrawable.start();
+        return circularProgressDrawable;
     }
 
     private void searchCharactersApi(String name) {
