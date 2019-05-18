@@ -15,17 +15,16 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 @Dao
 public interface CharacterDao {
 
-    @Insert(onConflict = IGNORE)
+    @Insert(onConflict = IGNORE) //TODO: I can REPLACE on conflict, api returns espidoes list already in the search call, not only in details call lmao so episodes wont be errased. Change also repository call logic
     long[] insertCharacters(Character... characters);
 
     @Insert(onConflict = REPLACE)
     void insertCharacter(Character character);
 
     //TODO: Figure out why @query with String[] is not working
-//    @TypeConverters({Converters.class})
-//    @Query("UPDATE characters SET name = :name, status = :status, species = :species, type = :type, gender = :gender, imageUrl = :imageUrl, episodes = " + ":episodes, url = :url, createdDate = :createdDate " +
-//            "WHERE character_id = :character_id")
-//    void updateCharacter(String character_id, String name, String status, String species, String type, String gender, String imageUrl, String[] episodes, String url, String createdDate);
+    @Query("UPDATE characters SET name = :name, status = :status, species = :species, type = :type, gender = :gender, imageUrl = :imageUrl, episodes = :episodes, url = :url, createdDate = :createdDate " +
+            "WHERE character_id = :character_id")
+    void updateCharacterQuery(String character_id, String name, String status, String species, String type, String gender, String imageUrl, String[] episodes, String url, String createdDate);
 
     @Update
     void updateCharacter(Character characters);

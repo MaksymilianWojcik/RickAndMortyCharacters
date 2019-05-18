@@ -56,7 +56,7 @@ public class Character implements Parcelable {
 
     @ColumnInfo(name = "createdDate")
     @SerializedName("created")
-    private String createdDate;
+    private String createdDate; //TODO date converter
 
     public Character() {
     }
