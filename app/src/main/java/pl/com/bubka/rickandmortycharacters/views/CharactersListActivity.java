@@ -1,5 +1,7 @@
 package pl.com.bubka.rickandmortycharacters.views;
 
+import android.animation.ObjectAnimator;
+import android.animation.StateListAnimator;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -7,6 +9,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.appbar.AppBarLayout;
 
 import java.util.List;
 
@@ -22,7 +25,7 @@ import pl.com.bubka.rickandmortycharacters.R;
 import pl.com.bubka.rickandmortycharacters.adapters.CharactersRecyclerAdapter;
 import pl.com.bubka.rickandmortycharacters.models.Character;
 import pl.com.bubka.rickandmortycharacters.utils.Resource;
-import pl.com.bubka.rickandmortycharacters.utils.VerticalSpacingItemDecorator;
+import pl.com.bubka.rickandmortycharacters.utils.SpacingItemDecorator;
 import pl.com.bubka.rickandmortycharacters.viewmodels.CharactersListViewModel;
 
 public class CharactersListActivity extends BaseActivity {
@@ -43,12 +46,19 @@ public class CharactersListActivity extends BaseActivity {
         recyclerView = findViewById(R.id.characters_list);
         searchView = findViewById(R.id.search_view);
 
+        //Removing divider
+        AppBarLayout appBarLayout = findViewById(R.id.appbarlayout);
+        StateListAnimator stateListAnimator = new StateListAnimator();
+        stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(R.layout.activity_characters_list, "elevation", 0));
+        appBarLayout.setStateListAnimator(stateListAnimator);
+
         charactersListViewModel = ViewModelProviders.of(this).get(CharactersListViewModel.class);
 
         initRecyclerView();
         initSearchView();
         subscribeObservers();
         setSupportActionBar(findViewById(R.id.toolbar));
+        getSupportActionBar().setElevation(0);
 
         searchCharactersApi("");
     }
@@ -93,7 +103,7 @@ public class CharactersListActivity extends BaseActivity {
 
     private void initRecyclerView() {
         adapter = new CharactersRecyclerAdapter(initGlide());
-        VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(30);
+        SpacingItemDecorator itemDecorator = new SpacingItemDecorator(30, 30);
         recyclerView.addItemDecoration(itemDecorator);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -115,7 +125,6 @@ public class CharactersListActivity extends BaseActivity {
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(initCircularProgressDrawable())
                 .error(R.drawable.ic_launcher_background); //TODO: icons
-
         return Glide.with(this).setDefaultRequestOptions(requestOptions);
     }
 
@@ -133,13 +142,15 @@ public class CharactersListActivity extends BaseActivity {
         searchView.clearFocus();
     }
 
-    private void initSearchView() {
+    private void initSearchView() { //TODO: https://github.com/MiguelCatalan/MaterialSearchView
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
 
+                //TODO: search all characters when query empty
+                //problem: gets not called when the query is empty
                 searchCharactersApi(s);
-                return false;
+                return false; //TODO: What is this boolean responsible for?
             }
 
             @Override
@@ -152,6 +163,7 @@ public class CharactersListActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         charactersListViewModel.cancelSearchRequest(); //TODO: after choosing CHARACTERS, LOCATIONS, EPISODES etc. go back to menu screen
+        //TODO: if results are filtered than back press invokes all characters search again
         super.onBackPressed();
     }
 }
