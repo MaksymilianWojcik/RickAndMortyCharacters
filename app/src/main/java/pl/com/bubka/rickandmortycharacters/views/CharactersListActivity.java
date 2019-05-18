@@ -3,6 +3,7 @@ package pl.com.bubka.rickandmortycharacters.views;
 import android.animation.ObjectAnimator;
 import android.animation.StateListAnimator;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -45,7 +46,7 @@ public class CharactersListActivity extends BaseActivity {
 
         recyclerView = findViewById(R.id.characters_list);
         searchView = findViewById(R.id.search_view);
-        
+
         charactersListViewModel = ViewModelProviders.of(this).get(CharactersListViewModel.class);
 
         initRecyclerView();
@@ -140,15 +141,16 @@ public class CharactersListActivity extends BaseActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-
-                //TODO: search all characters when query empty
-                //problem: gets not called when the query is empty
+                //query text submit isnt called when the query is empty
                 searchCharactersApi(s);
                 return false; //TODO: What is this boolean responsible for?
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
+                if(TextUtils.isEmpty(s)){
+                    searchCharactersApi("");
+                }
                 return false;
             }
         });
