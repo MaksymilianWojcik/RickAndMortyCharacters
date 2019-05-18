@@ -9,7 +9,7 @@ import retrofit2.Response;
 
 public class ApiResponse<T> {
 
-    public ApiResponse<T> create(Throwable error) { //TODO: ????
+    public ApiResponse<T> create(Throwable error) {
         return new ErrorResponse<>(!error.getMessage().equals("") ?  error.getMessage() : Resources.getSystem().getString(R.string.error_getting_results));
     }
 

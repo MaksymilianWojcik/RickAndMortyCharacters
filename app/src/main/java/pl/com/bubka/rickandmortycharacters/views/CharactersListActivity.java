@@ -141,7 +141,7 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
             public boolean onQueryTextSubmit(String s) {
                 //query text submit isnt called when the query is empty
                 searchCharactersApi(s);
-                return false; //TODO: What is this boolean responsible for?
+                return false;
             }
 
             @Override

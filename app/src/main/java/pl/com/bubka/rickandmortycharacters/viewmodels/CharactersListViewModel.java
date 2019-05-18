@@ -48,7 +48,7 @@ public class CharactersListViewModel extends AndroidViewModel {
                 pageNumber = 1;
             }
             this.pageNumber = pageNumber;
-            this.name = name; //TODO: QUERY
+            this.name = name;
             isQueryExhausted = false;
             executeSearch();
         }
