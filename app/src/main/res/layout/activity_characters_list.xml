@@ -8,19 +8,29 @@
     tools:context=".views.CharactersListActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarlayout"
+        android:showDividers="none"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            app:title=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways">
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:layout_margin="8dp"
+            android:alpha="0.32"
+            android:background="#BF29D2EB">
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
+                app:searchIcon="@drawable/ic_search"
+                app:searchHintIcon="@drawable/ic_search"
                 android:layout_height="?attr/actionBarSize"
+                android:backgroundTint="#BF29D2EB"
                 app:queryHint="@string/search_view_hint" />
 
         </androidx.appcompat.widget.Toolbar>
