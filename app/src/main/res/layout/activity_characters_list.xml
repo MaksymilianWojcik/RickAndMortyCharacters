@@ -12,6 +12,7 @@
         android:showDividers="none"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="0dp"
         android:background="#FFFFFF">
 
         <androidx.appcompat.widget.Toolbar
@@ -27,6 +28,7 @@
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
+                app:showDividers="none"
                 app:searchIcon="@drawable/ic_search"
                 app:searchHintIcon="@drawable/ic_search"
                 android:layout_height="?attr/actionBarSize"

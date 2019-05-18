@@ -45,13 +45,7 @@ public class CharactersListActivity extends BaseActivity {
 
         recyclerView = findViewById(R.id.characters_list);
         searchView = findViewById(R.id.search_view);
-
-        //Removing divider
-        AppBarLayout appBarLayout = findViewById(R.id.appbarlayout);
-        StateListAnimator stateListAnimator = new StateListAnimator();
-        stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(R.layout.activity_characters_list, "elevation", 0));
-        appBarLayout.setStateListAnimator(stateListAnimator);
-
+        
         charactersListViewModel = ViewModelProviders.of(this).get(CharactersListViewModel.class);
 
         initRecyclerView();
