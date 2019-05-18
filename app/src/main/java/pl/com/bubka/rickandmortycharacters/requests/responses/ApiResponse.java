@@ -11,7 +11,8 @@ import timber.log.Timber;
 public class ApiResponse<T> {
 
     public ApiResponse<T> create(Throwable error) {
-        return new ErrorResponse<>(!error.getMessage().equals("") ?  error.getMessage() : Resources.getSystem().getString(R.string.error_getting_results));
+        Timber.w(error);
+        return new ErrorResponse<>(Resources.getSystem().getString(R.string.error_getting_results));
     }
 
     public ApiResponse<T> create(Response<T> response) {
