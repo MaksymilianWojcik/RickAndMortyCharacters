@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import pl.com.bubka.rickandmortycharacters.R;
 import retrofit2.Response;
+import timber.log.Timber;
 
 public class ApiResponse<T> {
 
@@ -27,7 +28,7 @@ public class ApiResponse<T> {
             try {
                 errorMessage = response.errorBody().string();
             } catch (IOException e) {
-                e.printStackTrace();
+                Timber.e(e);
                 errorMessage = response.message();
             }
             return new ErrorResponse<>(errorMessage);

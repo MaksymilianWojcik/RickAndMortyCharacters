@@ -2,7 +2,6 @@ package pl.com.bubka.rickandmortycharacters.views;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -74,7 +73,7 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
                                 }
                                 break;
                             case ERROR:
-                                Timber.d("onChanged: ERROR: " + listResource.message);
+                                Timber.w("onChanged: ERROR: " + listResource.message);
                                 adapter.hideLoading();
                                 adapter.setCharacters(listResource.data);
                                 Toast.makeText(CharactersListActivity.this, listResource.message, Toast.LENGTH_SHORT).show();

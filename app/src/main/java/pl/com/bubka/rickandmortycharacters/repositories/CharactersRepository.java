@@ -1,7 +1,6 @@
 package pl.com.bubka.rickandmortycharacters.repositories;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.util.List;
 

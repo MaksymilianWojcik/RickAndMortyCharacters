@@ -6,7 +6,6 @@ import android.widget.TextView;
 import com.bumptech.glide.RequestManager;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
