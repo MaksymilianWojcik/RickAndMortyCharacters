@@ -11,6 +11,8 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.Transformation;
 
+import timber.log.Timber;
+
 public class HorizontalDottedProgress extends View {
 
     //actual dot radius
@@ -113,7 +115,7 @@ public class HorizontalDottedProgress extends View {
                 if (mDotPosition == mDotAmount) {
                     mDotPosition = 0;
                 }
-                Log.d("INFOMETHOD","----On Animation Repeat----");
+                Timber.tag("INFOMETHOD").d("----On Animation Repeat----");
 
             }
         });

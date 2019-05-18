@@ -28,6 +28,7 @@ import pl.com.bubka.rickandmortycharacters.models.Character;
 import pl.com.bubka.rickandmortycharacters.utils.Resource;
 import pl.com.bubka.rickandmortycharacters.utils.SpacingItemDecorator;
 import pl.com.bubka.rickandmortycharacters.viewmodels.CharactersListViewModel;
+import timber.log.Timber;
 
 public class CharactersListActivity extends BaseActivity implements OnCharacterClickListener {
 
@@ -62,7 +63,7 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
             @Override
             public void onChanged(Resource<List<Character>> listResource) {
                 if (listResource != null) {
-                    Log.i(TAG, "onChanged: status: " + listResource.status);
+                    Timber.d("onChanged: status: " + listResource.status);
                     if (listResource.data != null) {
                         switch (listResource.status) {
                             case LOADING:
@@ -73,7 +74,7 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
                                 }
                                 break;
                             case ERROR:
-                                Log.e(TAG, "onChanged: ERROR: " + listResource.message);
+                                Timber.d("onChanged: ERROR: " + listResource.message);
                                 adapter.hideLoading();
                                 adapter.setCharacters(listResource.data);
                                 Toast.makeText(CharactersListActivity.this, listResource.message, Toast.LENGTH_SHORT).show();
@@ -83,7 +84,7 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
                                 }
                                 break;
                             case SUCCESS:
-                                Log.i(TAG, "onChanged: CACJE REFRESJED: " + listResource.data.size());
+                                Timber.d("onChanged: CACJE REFRESJED: " + listResource.data.size());
                                 adapter.hideLoading();
                                 adapter.setCharacters(listResource.data);
                                 break;
@@ -163,6 +164,6 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
 
     @Override
     public void onCharacterSelected(int position) {
-        Log.i(TAG, "onCharacterClick: Character was clicked: " + adapter.getSelectedCharacter(position).toString());
+        Timber.d("onCharacterClick: Character was clicked: " + adapter.getSelectedCharacter(position).toString());
     }
 }

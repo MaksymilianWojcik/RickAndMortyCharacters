@@ -21,7 +21,7 @@ public class ServiceGenerator {
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
         @Override
         public void log(String message) {
-            Log.i("ApiRequest", "log: " + message);
+            Timber.tag("ApiRequest").d(message);
         }
     }).setLevel(HttpLoggingInterceptor.Level.BODY);
 

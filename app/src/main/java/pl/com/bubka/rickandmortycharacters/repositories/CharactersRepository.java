@@ -17,6 +17,7 @@ import pl.com.bubka.rickandmortycharacters.requests.responses.ApiResponse;
 import pl.com.bubka.rickandmortycharacters.requests.responses.CharacterSearchResponse;
 import pl.com.bubka.rickandmortycharacters.utils.NetworkBoundResources;
 import pl.com.bubka.rickandmortycharacters.utils.Resource;
+import timber.log.Timber;
 
 public class CharactersRepository {
 
@@ -46,7 +47,7 @@ public class CharactersRepository {
                     int index = 0;
                     for (long rowId : characterDao.insertCharacters((Character[]) (item.getCharactersList().toArray(characters)))) {
                         if (rowId == -1) {
-                            Log.i(TAG, "saveCallResult: Already in cache");
+                            Timber.d("saveCallResult: Already in cache");
                             characterDao.updateCharacter(characters[index]);
                         }
                         index++;
@@ -62,7 +63,7 @@ public class CharactersRepository {
             @NonNull
             @Override
             protected LiveData<List<Character>> loadFromDb() {
-                Log.i("Chara", "loadFromDb: ");
+                Timber.d("loadFromDb: ");
                 return characterDao.searchCharacters(name, pageNumber);
             }
 

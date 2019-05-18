@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import pl.com.bubka.rickandmortycharacters.models.Character;
 import pl.com.bubka.rickandmortycharacters.repositories.CharactersRepository;
 import pl.com.bubka.rickandmortycharacters.utils.Resource;
+import timber.log.Timber;
 
 public class CharactersListViewModel extends AndroidViewModel {
 
@@ -96,7 +97,7 @@ public class CharactersListViewModel extends AndroidViewModel {
 
     public void cancelSearchRequest() {
         if (isPerformingQuery) {
-            Log.d(TAG, "cancelSearchRequest: canceling the search request.");
+            Timber.d( "cancelSearchRequest: canceling the search request.");
             cancelRequest = true;
             isPerformingQuery = false;
             pageNumber = 1;
