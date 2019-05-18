@@ -18,6 +18,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import pl.com.bubka.rickandmortycharacters.BaseActivity;
 import pl.com.bubka.rickandmortycharacters.R;
 import pl.com.bubka.rickandmortycharacters.adapters.CharactersRecyclerAdapter;
@@ -29,10 +31,10 @@ import pl.com.bubka.rickandmortycharacters.viewmodels.CharactersListViewModel;
 
 public class CharactersListActivity extends BaseActivity implements OnCharacterClickListener {
 
-    private RecyclerView recyclerView;
-    private CharactersRecyclerAdapter adapter;
-    private SearchView searchView;
+    @BindView(R.id.characters_list) RecyclerView recyclerView;
+    @BindView(R.id.search_view) SearchView searchView;
 
+    private CharactersRecyclerAdapter adapter;
     private CharactersListViewModel charactersListViewModel;
 
     public static final String TAG = "CharacterListActivity";
@@ -41,9 +43,7 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_characters_list);
-
-        recyclerView = findViewById(R.id.characters_list);
-        searchView = findViewById(R.id.search_view);
+        ButterKnife.bind(this);
 
         charactersListViewModel = ViewModelProviders.of(this).get(CharactersListViewModel.class);
 

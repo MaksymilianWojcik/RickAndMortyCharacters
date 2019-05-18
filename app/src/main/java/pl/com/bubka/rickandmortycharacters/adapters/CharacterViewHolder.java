@@ -9,30 +9,30 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import pl.com.bubka.rickandmortycharacters.R;
 import pl.com.bubka.rickandmortycharacters.models.Character;
 
 public class CharacterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    RequestManager requestManager;
-    TextView name, status, gender;
-    AppCompatImageView imageView, statusImageView, genderImageView;
+    @BindView(R.id.character_name_rd) TextView name;
+    @BindView(R.id.character_status_rd) TextView status;
+    @BindView(R.id.character_gender_rd) TextView gender;
+    @BindView(R.id.character_image_rd) AppCompatImageView imageView;
+    @BindView(R.id.character_status_image_rd) AppCompatImageView statusImageView;
+    @BindView(R.id.character_gender_image_rd) AppCompatImageView genderImageView;
 
+    RequestManager requestManager;
     OnCharacterClickListener onCharacterClickListener;
 
     //TODO: Caching glide - preloaders
 
     public CharacterViewHolder(@NonNull View itemView, RequestManager requestManager, OnCharacterClickListener onCharacterClickListener) {
         super(itemView);
+        ButterKnife.bind(this, itemView);
         this.requestManager = requestManager;
         this.onCharacterClickListener = onCharacterClickListener;
-
-        name = itemView.findViewById(R.id.character_name_rd);
-        status = itemView.findViewById(R.id.character_status_rd);
-        gender = itemView.findViewById(R.id.character_gender_rd);
-        imageView = itemView.findViewById(R.id.character_image_rd);
-        statusImageView = itemView.findViewById(R.id.character_status_image_rd);
-        genderImageView = itemView.findViewById(R.id.character_gender_image_rd);
 
         itemView.setOnClickListener(this);
     }
