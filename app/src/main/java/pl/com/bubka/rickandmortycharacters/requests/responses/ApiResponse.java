@@ -10,7 +10,7 @@ import retrofit2.Response;
 public class ApiResponse<T> {
 
     public ApiResponse<T> create(Throwable error) { //TODO: ????
-        return new ErrorResponse<>(error.getMessage().equals("") ?  Resources.getSystem().getString(R.string.error_getting_results) : error.getMessage());
+        return new ErrorResponse<>(!error.getMessage().equals("") ?  error.getMessage() : Resources.getSystem().getString(R.string.error_getting_results));
     }
 
     public ApiResponse<T> create(Response<T> response) {
@@ -23,14 +23,14 @@ public class ApiResponse<T> {
                 return new SuccesResponse<>(body);
             }
         } else {
-            String errorMesssage;
+            String errorMessage = "";
             try {
-                errorMesssage = response.errorBody().string();
+                errorMessage = response.errorBody().string();
             } catch (IOException e) {
                 e.printStackTrace();
-                errorMesssage = response.message();
+                errorMessage = response.message();
             }
-            return new ErrorResponse<>(errorMesssage);
+            return new ErrorResponse<>(errorMessage);
         }
     }
 
