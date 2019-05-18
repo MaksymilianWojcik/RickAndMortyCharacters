@@ -1,5 +1,6 @@
 package pl.com.bubka.rickandmortycharacters.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -164,5 +165,8 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
     @Override
     public void onCharacterSelected(int position) {
         Timber.d("onCharacterClick: Character was clicked: " + adapter.getSelectedCharacter(position).toString());
+        Intent intent = new Intent(this, CharacterDetailsActivity.class);
+        intent.putExtra("CharacterExtra", adapter.getSelectedCharacter(position));
+        startActivity(intent);
     }
 }

@@ -6,4 +6,236 @@
     android:layout_height="match_parent"
     tools:context=".views.CharacterDetailsActivity">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/character_detail_image"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="SEAL TEAM RICK"
+        android:textSize="24sp"
+        android:textColor="#FFFFFF"
+        android:padding="10dp"
+        android:background="#124952"
+        app:layout_constraintEnd_toEndOf="@+id/character_detail_image"
+        app:layout_constraintStart_toStartOf="@+id/character_detail_image"
+        app:layout_constraintTop_toBottomOf="@+id/character_detail_image" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="#B0007983"
+        android:padding="8dp"
+        android:alpha="0.48"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="6"
+            android:textColor="#FFFFFF"
+            android:text="STATUS"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/character_details_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:layout_weight="3"
+            android:textColor="#124952"
+            android:text="DEAD"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_dead"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="#B0007983"
+        android:padding="8dp"
+        android:alpha="0.48"
+        app:layout_constraintEnd_toEndOf="@+id/linear_one"
+        app:layout_constraintStart_toStartOf="@+id/linear_one"
+        app:layout_constraintTop_toBottomOf="@+id/linear_one">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="6"
+            android:textColor="#FFFFFF"
+            android:text="SPECIES"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/character_details_species"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:layout_weight="3"
+            android:textColor="#124952"
+            android:text="HUMAN"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_dead"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_three"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="#B0007983"
+        android:padding="8dp"
+        android:alpha="0.48"
+        app:layout_constraintEnd_toEndOf="@+id/linear_two"
+        app:layout_constraintStart_toStartOf="@+id/linear_two"
+        app:layout_constraintTop_toBottomOf="@+id/linear_two">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="6"
+            android:textColor="#FFFFFF"
+            android:text="GENDER"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/character_details_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:layout_weight="3"
+            android:textColor="#124952"
+            android:text="MALE"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_dead"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_four"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="#B0007983"
+        android:padding="8dp"
+        android:alpha="0.48"
+        app:layout_constraintEnd_toEndOf="@+id/linear_three"
+        app:layout_constraintStart_toStartOf="@+id/linear_three"
+        app:layout_constraintTop_toBottomOf="@+id/linear_three">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="6"
+            android:textColor="#FFFFFF"
+            android:text="ORIGIN"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/character_details_origin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:layout_weight="3"
+            android:textColor="#124952"
+            android:text="UNKNOWN"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_dead"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_five"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="#B0007983"
+        android:padding="8dp"
+        android:alpha="0.48"
+        app:layout_constraintEnd_toEndOf="@+id/linear_four"
+        app:layout_constraintStart_toStartOf="@+id/linear_four"
+        app:layout_constraintTop_toBottomOf="@+id/linear_four">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:text="LAST LOCATION"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/character_details_last_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:layout_weight="3"
+            android:textColor="#124952"
+            android:text="CITADEL OF RICKS"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_dead"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/linear_five"
+        app:layout_constraintStart_toStartOf="@+id/linear_five"
+        app:layout_constraintTop_toBottomOf="@+id/linear_five"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:title="">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textSize="20sp"
+            android:text="BACK"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
