@@ -16,6 +16,8 @@ android {
                                      "$projectDir/schemas".toString()]
             }
         }
+
+        vectorDrawables.useSupportLibrary = true
     }
 
     compileOptions {
