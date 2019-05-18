@@ -1,7 +1,5 @@
 package pl.com.bubka.rickandmortycharacters.views;
 
-import android.animation.ObjectAnimator;
-import android.animation.StateListAnimator;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,7 +8,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.android.material.appbar.AppBarLayout;
 
 import java.util.List;
 
@@ -24,12 +21,13 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 import pl.com.bubka.rickandmortycharacters.BaseActivity;
 import pl.com.bubka.rickandmortycharacters.R;
 import pl.com.bubka.rickandmortycharacters.adapters.CharactersRecyclerAdapter;
+import pl.com.bubka.rickandmortycharacters.adapters.OnCharacterClickListener;
 import pl.com.bubka.rickandmortycharacters.models.Character;
 import pl.com.bubka.rickandmortycharacters.utils.Resource;
 import pl.com.bubka.rickandmortycharacters.utils.SpacingItemDecorator;
 import pl.com.bubka.rickandmortycharacters.viewmodels.CharactersListViewModel;
 
-public class CharactersListActivity extends BaseActivity {
+public class CharactersListActivity extends BaseActivity implements OnCharacterClickListener {
 
     private RecyclerView recyclerView;
     private CharactersRecyclerAdapter adapter;
@@ -97,7 +95,7 @@ public class CharactersListActivity extends BaseActivity {
     }
 
     private void initRecyclerView() {
-        adapter = new CharactersRecyclerAdapter(initGlide());
+        adapter = new CharactersRecyclerAdapter(initGlide(), this);
         SpacingItemDecorator itemDecorator = new SpacingItemDecorator(30, 30);
         recyclerView.addItemDecoration(itemDecorator);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -161,5 +159,10 @@ public class CharactersListActivity extends BaseActivity {
         charactersListViewModel.cancelSearchRequest(); //TODO: after choosing CHARACTERS, LOCATIONS, EPISODES etc. go back to menu screen
         //TODO: if results are filtered than back press invokes all characters search again
         super.onBackPressed();
+    }
+
+    @Override
+    public void onCharacterSelected(int position) {
+        Log.i(TAG, "onCharacterClick: Character was clicked: " + adapter.getSelectedCharacter(position).toString());
     }
 }

@@ -54,16 +54,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="46dp"
                     android:gravity="center_vertical">
+
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="32dp"
+                        android:id="@+id/character_status_image_rd"
+                        android:layout_width="30dp"
                         app:srcCompat="@drawable/ic_alive"
-                        android:layout_height="32dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="10dp"/>
 
                     <TextView
                         android:id="@+id/character_status_rd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
                         android:text="ALIVE"
                         android:textColor="#A3FFFFFF"
                         android:textSize="20sp"
@@ -77,14 +80,16 @@
                         android:layout_marginRight="8dp"/>
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_dead"/>
+                        android:id="@+id/character_gender_image_rd"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_crossbone"/>
 
                     <TextView
-                        android:id="@+id/character_species_rd"
+                        android:id="@+id/character_gender_rd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
                         android:text="MALE"
                         android:textColor="#A3FFFFFF"
                         android:textSize="20sp"

@@ -17,7 +17,7 @@ import pl.com.bubka.rickandmortycharacters.models.Character;
 public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static final String LOADING_TYPE_TEXT = "LOADING...";
-    public static final String EXHUASTED_TYPE_TEXT = "EXHAUSTED...";
+    public static final String EXHAUSTED_TYPE_TEXT = "EXHAUSTED...";
 
     private static final int CHARACTERS_TYPE = 1;
     private static final int LOADING_TYPE = 2;
@@ -26,8 +26,11 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     private List<Character> characterList;
     private RequestManager requestManager;
 
-    public CharactersRecyclerAdapter(RequestManager requestManager) {
+    OnCharacterClickListener onCharacterClickListener;
+
+    public CharactersRecyclerAdapter(RequestManager requestManager, OnCharacterClickListener onCharacterClickListener) {
         this.requestManager = requestManager;
+        this.onCharacterClickListener = onCharacterClickListener;
     }
 
     @NonNull
@@ -38,8 +41,8 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
 
         switch (viewType) {
             case CHARACTERS_TYPE: {
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.character_list_item, parent, false);
-                return new CharacterViewHolder(view, requestManager);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.character_list_item_redesign, parent, false);
+                return new CharacterViewHolder(view, requestManager, onCharacterClickListener);
             }
             case LOADING_TYPE: {
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.loading_list_item, parent, false);
@@ -51,8 +54,8 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
                 return new SearchExhaustedViewHolder(view);
             }
             default: {
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.character_list_item, parent, false);
-                return new CharacterViewHolder(view, requestManager);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.character_list_item_redesign, parent, false);
+                return new CharacterViewHolder(view, requestManager, onCharacterClickListener);
             }
         }
     }
@@ -69,7 +72,7 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     public int getItemViewType(int position) {
         if (characterList.get(position).getName().equals(LOADING_TYPE_TEXT)) {
             return LOADING_TYPE;
-        } else if (characterList.get(position).getName().equals(EXHUASTED_TYPE_TEXT)) {
+        } else if (characterList.get(position).getName().equals(EXHAUSTED_TYPE_TEXT)) {
             return EXHAUSTED_TYPE;
         } else {
             return CHARACTERS_TYPE;
@@ -92,7 +95,7 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     public void setQueryExhausted() {
         hideLoading();
         Character exhausted = new Character();
-        exhausted.setName(EXHUASTED_TYPE_TEXT);
+        exhausted.setName(EXHAUSTED_TYPE_TEXT);
         characterList.add(exhausted);
         notifyDataSetChanged();
     }
@@ -135,6 +138,13 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         }
     }
 
+    public Character getSelectedCharacter(int position) {
+        if(characterList != null && characterList.size() > 0){
+            return characterList.get(position);
+        }
+        return null;
+    }
+
     private void clearCharactersList() {
         if (characterList == null) {
             characterList = new ArrayList<>();
@@ -154,5 +164,4 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         }
         return false;
     }
-
 }
