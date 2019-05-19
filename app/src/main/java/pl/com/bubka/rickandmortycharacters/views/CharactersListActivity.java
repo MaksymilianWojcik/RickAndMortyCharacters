@@ -66,7 +66,9 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
                     if (listResource.data != null) {
                         switch (listResource.status) {
                             case LOADING:
-                                if (charactersListViewModel.getPageNumber() > 1  && !adapter.getSelectedCharacter(adapter.getItemCount()-1).getName().equals("EXHAUSTED...")) {
+                                if (charactersListViewModel.getPageNumber() > 1
+                                        && adapter.getSelectedCharacter(adapter.getItemCount()-1) != null
+                                        && !adapter.getSelectedCharacter(adapter.getItemCount()-1).getName().equals("EXHAUSTED...")) {
                                     adapter.displayLoading();
                                 } else if (charactersListViewModel.getPageNumber() == 1){
                                     adapter.displayOnlyLoading();
