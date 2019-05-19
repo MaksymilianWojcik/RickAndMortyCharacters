@@ -1,5 +1,11 @@
 package pl.com.bubka.rickandmortycharacters.requests.responses;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import pl.com.bubka.rickandmortycharacters.R;
@@ -26,10 +32,13 @@ public class ApiResponse<T> {
         } else {
             String errorMessage = "";
             try {
-                errorMessage = response.errorBody().string();
+                errorMessage = new JSONObject(response.errorBody().string()).getString("error");
             } catch (IOException e) {
                 Timber.e(e);
                 errorMessage = response.message();
+            } catch (JSONException e) {
+                Timber.e(e);
+                e.printStackTrace();
             }
             return new ErrorResponse<>(errorMessage);
         }

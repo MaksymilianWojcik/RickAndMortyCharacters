@@ -18,10 +18,12 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
 
     public static final String LOADING_TYPE_TEXT = "LOADING...";
     public static final String EXHAUSTED_TYPE_TEXT = "EXHAUSTED...";
+    public static final String NO_CONNECTION_TYPE_TEXT = "NO CONNECTION...";
 
     private static final int CHARACTERS_TYPE = 1;
     private static final int LOADING_TYPE = 2;
     private static final int EXHAUSTED_TYPE = 3;
+    public static final int NO_CONNECTION_TYPE = 4;
 
     private List<Character> characterList;
     private RequestManager requestManager;
@@ -53,6 +55,11 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.exhausted_list_item, parent, false);
                 return new SearchExhaustedViewHolder(view);
             }
+
+            case NO_CONNECTION_TYPE: {
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.no_connection_list_item, parent, false);
+                return new NoConnectionViewHolder(view);
+            }
             default: {
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.character_list_item_redesign, parent, false);
                 return new CharacterViewHolder(view, requestManager, onCharacterClickListener);
@@ -76,7 +83,9 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
             return LOADING_TYPE;
         } else if (characterList.get(position).getName().equals(EXHAUSTED_TYPE_TEXT)) {
             return EXHAUSTED_TYPE;
-        } else {
+        } else if (characterList.get(position).getName().equals(NO_CONNECTION_TYPE_TEXT)) {
+            return NO_CONNECTION_TYPE;
+        }else {
             return CHARACTERS_TYPE;
         }
     }
@@ -98,6 +107,14 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         hideLoading();
         Character exhausted = new Character();
         exhausted.setName(EXHAUSTED_TYPE_TEXT);
+        characterList.add(exhausted);
+        notifyDataSetChanged();
+    }
+
+    public void setNoConnection() {
+        hideLoading();
+        Character exhausted = new Character();
+        exhausted.setName(NO_CONNECTION_TYPE_TEXT);
         characterList.add(exhausted);
         notifyDataSetChanged();
     }

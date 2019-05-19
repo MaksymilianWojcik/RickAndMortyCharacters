@@ -78,10 +78,11 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
                                 Timber.w("onChanged: ERROR: " + listResource.message);
                                 adapter.hideLoading();
                                 adapter.setCharacters(listResource.data);
-                                if (listResource.message.equals("{\"error\":\"There is nothing here\"}")) {
+                                if (listResource.message.equals("There is nothing here")) {
                                     adapter.setQueryExhausted();
                                 } else {
-                                    Toast.makeText(CharactersListActivity.this, listResource.message, Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(CharactersListActivity.this, listResource.message, Toast.LENGTH_SHORT).show();
+                                    adapter.setNoConnection();
                                 }
                                 break;
                             case SUCCESS:
