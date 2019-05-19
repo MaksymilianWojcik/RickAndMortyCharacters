@@ -57,7 +57,6 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
         searchCharactersApi("");
     }
 
-
     private void subscribeObservers() {
         charactersListViewModel.getCharacters().observe(this, new Observer<Resource<List<Character>>>() {
             @Override
@@ -67,9 +66,9 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
                     if (listResource.data != null) {
                         switch (listResource.status) {
                             case LOADING:
-                                if (charactersListViewModel.getPageNumber() > 1) {
+                                if (charactersListViewModel.getPageNumber() > 1  && !adapter.getSelectedCharacter(adapter.getItemCount()-1).getName().equals("EXHAUSTED...")) {
                                     adapter.displayLoading();
-                                } else {
+                                } else if (charactersListViewModel.getPageNumber() == 1){
                                     adapter.displayOnlyLoading();
                                 }
                                 break;
@@ -77,10 +76,10 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
                                 Timber.w("onChanged: ERROR: " + listResource.message);
                                 adapter.hideLoading();
                                 adapter.setCharacters(listResource.data);
-                                Toast.makeText(CharactersListActivity.this, listResource.message, Toast.LENGTH_SHORT).show();
-
-                                if (listResource.message.equals("No more results.")) {
+                                if (listResource.message.equals("{\"error\":\"There is nothing here\"}")) {
                                     adapter.setQueryExhausted();
+                                } else {
+                                    Toast.makeText(CharactersListActivity.this, listResource.message, Toast.LENGTH_SHORT).show();
                                 }
                                 break;
                             case SUCCESS:

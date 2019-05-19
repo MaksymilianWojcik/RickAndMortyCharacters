@@ -64,13 +64,15 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         int itemViewType = getItemViewType(position);
         if (itemViewType == CHARACTERS_TYPE) {
-            ((CharacterViewHolder) holder).onBind(characterList.get(position));
+            if(!characterList.get(position).getName().equals(EXHAUSTED_TYPE_TEXT)) {
+                ((CharacterViewHolder) holder).onBind(characterList.get(position));
+            }
         }
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (characterList.get(position).getName().equals(LOADING_TYPE_TEXT)) {
+        if (characterList.get(position).getName().equals(LOADING_TYPE_TEXT) && !characterList.get(position).getName().equals(EXHAUSTED_TYPE_TEXT)) {
             return LOADING_TYPE;
         } else if (characterList.get(position).getName().equals(EXHAUSTED_TYPE_TEXT)) {
             return EXHAUSTED_TYPE;
