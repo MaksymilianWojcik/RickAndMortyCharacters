@@ -42,13 +42,8 @@ public class HorizontalDottedProgress extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         Paint paint = new Paint();
-
-        //set the color for the dot that you want to draw
-        paint.setColor(Color.parseColor("#fd583f"));
-
-        //function to create dot
+        paint.setColor(Color.parseColor("#name"));
         createDot(canvas,paint);
     }
 
