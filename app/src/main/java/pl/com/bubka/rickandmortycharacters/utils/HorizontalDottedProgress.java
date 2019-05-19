@@ -43,7 +43,7 @@ public class HorizontalDottedProgress extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Paint paint = new Paint();
-        paint.setColor(Color.parseColor("#name"));
+        paint.setColor(Color.parseColor("#009688"));
         createDot(canvas,paint);
     }
 
