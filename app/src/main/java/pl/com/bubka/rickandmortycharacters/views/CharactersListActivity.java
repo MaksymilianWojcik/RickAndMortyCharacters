@@ -120,7 +120,7 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
     private RequestManager initGlide() {
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(initCircularProgressDrawable())
-                .error(R.drawable.ic_launcher_background); //TODO: icons
+                .error(R.drawable.ic_image_placeholder);
         return Glide.with(this).setDefaultRequestOptions(requestOptions);
     }
 
