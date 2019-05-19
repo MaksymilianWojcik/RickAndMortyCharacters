@@ -1,10 +1,9 @@
 package pl.com.bubka.rickandmortycharacters.requests.responses;
 
-import android.content.res.Resources;
-
 import java.io.IOException;
 
 import pl.com.bubka.rickandmortycharacters.R;
+import pl.com.bubka.rickandmortycharacters.RickAndMortyApplication;
 import retrofit2.Response;
 import timber.log.Timber;
 
@@ -12,7 +11,7 @@ public class ApiResponse<T> {
 
     public ApiResponse<T> create(Throwable error) {
         Timber.w(error);
-        return new ErrorResponse<>(Resources.getSystem().getString(R.string.error_getting_results));
+        return new ErrorResponse<>(RickAndMortyApplication.getInstance().getResources().getString(R.string.error_getting_results));
     }
 
     public ApiResponse<T> create(Response<T> response) {
