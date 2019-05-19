@@ -7,10 +7,12 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No more results..."
-        android:drawableEnd="@drawable/ic_mood_bad_black_24dp"
+        android:text="@string/no_more_results"
+        android:drawableEnd="@drawable/ic_rick_sanchez"
         android:layout_centerInParent="true"
-        android:padding="5dp"
-        android:drawablePadding="5dp"/>
+        android:padding="4dp"
+        android:textSize="20sp"
+        android:textColor="#009688"
+        android:drawablePadding="4dp"/>
 
 </RelativeLayout>
