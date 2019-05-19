@@ -12,11 +12,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
+import static pl.com.bubka.rickandmortycharacters.utils.Constants.CONNECTION_TIMEOUT;
+import static pl.com.bubka.rickandmortycharacters.utils.Constants.READ_TIMEOUT;
+import static pl.com.bubka.rickandmortycharacters.utils.Constants.WRITE_TIMEOUT;
+
 public class ServiceGenerator {
 
-    public static final int CONNECTION_TIMEOUT = 10;
-    public static final int READ_TIMEOUT =  5;
-    public static final int WRITE_TIMEOUT = 5;
+
 
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
         @Override

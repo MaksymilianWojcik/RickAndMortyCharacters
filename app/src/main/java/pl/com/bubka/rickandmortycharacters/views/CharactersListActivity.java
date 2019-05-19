@@ -81,7 +81,6 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
                                 if (listResource.message.equals("There is nothing here")) {
                                     adapter.setQueryExhausted();
                                 } else {
-//                                    Toast.makeText(CharactersListActivity.this, listResource.message, Toast.LENGTH_SHORT).show();
                                     adapter.setNoConnection();
                                 }
                                 break;

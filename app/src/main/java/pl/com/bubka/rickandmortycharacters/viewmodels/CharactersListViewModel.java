@@ -75,8 +75,7 @@ public class CharactersListViewModel extends AndroidViewModel {
                             isPerformingQuery = false;
                             if (listResource.data != null) {
                                 if (listResource.data.size() == 0) {
-                                    //koniec wynikow
-                                    characters.setValue(new Resource<List<Character>>(Resource.Status.ERROR, listResource.data, QUERY_EXHAUSTED));
+                                    characters.setValue(new Resource<List<Character>>(Resource.Status.ERROR, listResource.data, "There is nothing here"));
                                 }
                             }
                             characters.removeSource(characterSource);
