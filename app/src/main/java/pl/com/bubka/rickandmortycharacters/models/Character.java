@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -40,8 +41,13 @@ public class Character implements Parcelable {
     @ColumnInfo(name = "gender")
     private String gender;
 
-//TODO:    private Origin origin;
-//TODO:    private Location location;
+    @SerializedName("origin")
+    @Embedded(prefix = "origin_")
+    private CharacterLocation origin;
+
+    @SerializedName("location")
+    @Embedded(prefix = "last_")
+    private CharacterLocation lastLocation;
 
     @ColumnInfo(name = "imageUrl")
     @SerializedName("image")
@@ -74,6 +80,21 @@ public class Character implements Parcelable {
         this.createdDate = createdDate;
     }
 
+    public Character(@NonNull String character_id, String name, String status, String species, String type, String gender, CharacterLocation origin, CharacterLocation lastLocation, String imageUrl, String[] episodes, String url, String createdDate) {
+        this.character_id = character_id;
+        this.name = name;
+        this.status = status;
+        this.species = species;
+        this.type = type;
+        this.gender = gender;
+        this.origin = origin;
+        this.lastLocation = lastLocation;
+        this.imageUrl = imageUrl;
+        this.episodes = episodes;
+        this.url = url;
+        this.createdDate = createdDate;
+    }
+
     protected Character(Parcel in) {
         character_id = in.readString();
         name = in.readString();
@@ -85,6 +106,8 @@ public class Character implements Parcelable {
         episodes = in.createStringArray();
         url = in.readString();
         createdDate = in.readString();
+        origin = in.readParcelable(CharacterLocation.class.getClassLoader());
+        lastLocation = in.readParcelable(CharacterLocation.class.getClassLoader());
     }
 
     @Override
@@ -99,6 +122,8 @@ public class Character implements Parcelable {
         dest.writeStringArray(episodes);
         dest.writeString(url);
         dest.writeString(createdDate);
+        dest.writeParcelable(origin, flags);
+        dest.writeParcelable(lastLocation, flags);
     }
 
     @Override
@@ -198,15 +223,33 @@ public class Character implements Parcelable {
         this.createdDate = createdDate;
     }
 
+    public CharacterLocation getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(CharacterLocation origin) {
+        this.origin = origin;
+    }
+
+    public CharacterLocation getLastLocation() {
+        return lastLocation;
+    }
+
+    public void setLastLocation(CharacterLocation lastLocation) {
+        this.lastLocation = lastLocation;
+    }
+
     @Override
     public String toString() {
         return "Character{" +
-                "id=" + character_id +
+                "character_id='" + character_id + '\'' +
                 ", name='" + name + '\'' +
                 ", status='" + status + '\'' +
                 ", species='" + species + '\'' +
                 ", type='" + type + '\'' +
                 ", gender='" + gender + '\'' +
+                ", origin=" + origin.toString() +
+                ", lastLocation=" + lastLocation.toString() +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", episodes=" + Arrays.toString(episodes) +
                 ", url='" + url + '\'' +
