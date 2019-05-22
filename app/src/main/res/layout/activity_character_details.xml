@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/character_details_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="SEAL TEAM RICK"
@@ -37,9 +37,9 @@
         android:background="#B0007983"
         android:padding="8dp"
         android:alpha="0.48"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintEnd_toEndOf="@+id/character_details_name"
+        app:layout_constraintStart_toStartOf="@+id/character_details_name"
+        app:layout_constraintTop_toBottomOf="@+id/character_details_name">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -227,6 +227,7 @@
         app:title="">
 
         <Button
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
