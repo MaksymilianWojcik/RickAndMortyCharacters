@@ -42,9 +42,12 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="BIG MORTY"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:text="Adjudicator Rick"
+                        android:ellipsize="end"
                         android:textColor="#0D3940"
-                        android:textSize="26sp"
+                        android:textSize="22sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -57,9 +60,9 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/character_status_image_rd"
-                        android:layout_width="30dp"
+                        android:layout_width="25dp"
                         app:srcCompat="@drawable/ic_alive"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="10dp"/>
 
                     <TextView
@@ -69,7 +72,7 @@
                         android:layout_marginLeft="2dp"
                         android:text="ALIVE"
                         android:textColor="#A3FFFFFF"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -81,8 +84,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/character_gender_image_rd"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@drawable/ic_crossbone"/>
 
                     <TextView
@@ -92,7 +95,7 @@
                         android:layout_marginLeft="2dp"
                         android:text="MALE"
                         android:textColor="#A3FFFFFF"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
