@@ -30,6 +30,8 @@ import pl.com.bubka.rickandmortycharacters.utils.SpacingItemDecorator;
 import pl.com.bubka.rickandmortycharacters.viewmodels.CharactersListViewModel;
 import timber.log.Timber;
 
+import static pl.com.bubka.rickandmortycharacters.views.CharacterDetailsActivity.INTENT_EXTRA_CHARACTER;
+
 public class CharactersListActivity extends BaseActivity implements OnCharacterClickListener {
 
     @BindView(R.id.characters_list) RecyclerView recyclerView;
@@ -85,7 +87,7 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
                                 }
                                 break;
                             case SUCCESS:
-                                Timber.d("onChanged: CACJE REFRESJED: " + listResource.data.size());
+                                Timber.d("onChanged: cache refreshed with data size: " + listResource.data.size());
                                 adapter.hideLoading();
                                 adapter.setCharacters(listResource.data);
                                 break;
@@ -167,7 +169,7 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
     public void onCharacterSelected(int position) {
         Timber.d("onCharacterClick: Character was clicked: " + adapter.getSelectedCharacter(position).toString());
         Intent intent = new Intent(this, CharacterDetailsActivity.class);
-        intent.putExtra("CharacterExtra", adapter.getSelectedCharacter(position));
+        intent.putExtra(INTENT_EXTRA_CHARACTER, adapter.getSelectedCharacter(position));
         startActivity(intent);
     }
 }

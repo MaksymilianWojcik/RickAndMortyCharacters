@@ -23,7 +23,9 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     private static final int CHARACTERS_TYPE = 1;
     private static final int LOADING_TYPE = 2;
     private static final int EXHAUSTED_TYPE = 3;
-    public static final int NO_CONNECTION_TYPE = 4;
+    private static final int NO_CONNECTION_TYPE = 4;
+    private static final int LOCATIONS_TYPE = 5; //TODO: Locations
+
 
     private List<Character> characterList;
     private RequestManager requestManager;
@@ -50,12 +52,10 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.loading_list_item, parent, false);
                 return new LoadingViewHolder(view);
             }
-
             case EXHAUSTED_TYPE: {
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.exhausted_list_item, parent, false);
                 return new SearchExhaustedViewHolder(view);
             }
-
             case NO_CONNECTION_TYPE: {
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.no_connection_list_item, parent, false);
                 return new NoConnectionViewHolder(view);
@@ -101,10 +101,14 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     public void setCharacters(List<Character> characterList) {
         this.characterList = characterList;
         notifyDataSetChanged();
+        if(characterList.size() % 20 != 0){
+            setQueryExhausted();
+        }
     }
 
     public void setQueryExhausted() {
         hideLoading();
+        if(characterList.get(characterList.size() - 1).getName().equals(EXHAUSTED_TYPE_TEXT)) return;
         Character exhausted = new Character();
         exhausted.setName(EXHAUSTED_TYPE_TEXT);
         characterList.add(exhausted);
