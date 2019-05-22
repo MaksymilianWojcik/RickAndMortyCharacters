@@ -1,6 +1,5 @@
 package pl.com.bubka.rickandmortycharacters.requests;
 
-import android.util.Log;
 
 import java.util.concurrent.TimeUnit;
 
@@ -41,7 +40,7 @@ public class ServiceGenerator {
                     .baseUrl(Constants.BASE_URL)
                     .client(okHttpClient)
                     .addCallAdapterFactory(new LiveDataCallAdapterFactory())
-                    .addConverterFactory(GsonConverterFactory.create()); //TODO: dodac logginterecopty
+                    .addConverterFactory(GsonConverterFactory.create());
 
     private static Retrofit retrofit = retrofitBuilder.build();
 
