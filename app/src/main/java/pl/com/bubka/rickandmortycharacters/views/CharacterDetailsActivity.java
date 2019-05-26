@@ -1,11 +1,13 @@
 package pl.com.bubka.rickandmortycharacters.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.com.bubka.rickandmortycharacters.R;
 import pl.com.bubka.rickandmortycharacters.models.Character;
+import pl.com.bubka.rickandmortycharacters.viewmodels.CharacterDetailsViewModel;
 
 import android.os.Bundle;
 import android.view.View;
@@ -24,15 +26,23 @@ public class CharacterDetailsActivity extends AppCompatActivity {
     @BindView(R.id.character_details_status) TextView vStatus;
     @BindView(R.id.character_details_origin) TextView vOrigin;
     @BindView(R.id.character_details_last_location) TextView vLocation;
+    @BindView(R.id.character_details_id) TextView vId;
+    @BindView(R.id.character_details_created_date) TextView vCreatedDate;
 
     public static final String INTENT_EXTRA_CHARACTER = "CharacterExtra";
+    private CharacterDetailsViewModel characterDetailsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_details);
         ButterKnife.bind(this);
+        characterDetailsViewModel = ViewModelProviders.of(this).get(CharacterDetailsViewModel.class);
 
+        loadCharacterDetails();
+    }
+
+    public void loadCharacterDetails(){
         Character character = getIntent().getExtras().getParcelable(INTENT_EXTRA_CHARACTER);
 
         RequestOptions requestOptions = new RequestOptions()
@@ -48,6 +58,13 @@ public class CharacterDetailsActivity extends AppCompatActivity {
         vStatus.setText(character.getStatus());
         vOrigin.setText(character.getOrigin().getName());
         vLocation.setText(character.getLastLocation().getName());
+        vId.setText(character.getCharacter_id());
+        vCreatedDate.setText(character.getCreatedDate());
+    }
+
+    //TODO new request to get episodes, onClick on episode redirects to EpisodeDetailsActivity showing all characters from it
+    private void getIncomingIntent(){
+
     }
 
     @OnClick(R.id.backButton)

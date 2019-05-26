@@ -20,7 +20,6 @@ import timber.log.Timber;
 
 public class CharactersRepository {
 
-    private static final String TAG = "CharacterRepository";
     private static CharactersRepository instance;
     private CharacterDao characterDao;
 
@@ -56,13 +55,13 @@ public class CharactersRepository {
 
             @Override
             protected boolean shouldFetch(@Nullable List<Character> data) {
-                return true; //TODO: timestamp??
+                return true;
             }
 
             @NonNull
             @Override
             protected LiveData<List<Character>> loadFromDb() {
-                Timber.d("loadFromDb: ");
+                Timber.d("loadFromDb: loading characters");
                 return characterDao.searchCharacters(name, pageNumber);
             }
 
@@ -70,6 +69,37 @@ public class CharactersRepository {
             @Override
             protected LiveData<ApiResponse<CharacterSearchResponse>> createCall() {
                 return ServiceGenerator.getRickAndMortyApi().searchCharacters(name, String.valueOf(pageNumber));
+            }
+        }.getAsLiveData();
+    }
+
+    public LiveData<Resource<Character>> searchCharacterApi(final String id){
+        return new NetworkBoundResources<Character, Character>(AppExecutors.getInstance()){
+
+            @Override
+            protected void saveCallResult(@NonNull Character item) {
+                if (item != null) {
+                    Timber.d("saveCallResult: Already in cache: " + item.getName().toString());
+                    characterDao.insertCharacter(item);
+                }
+            }
+
+            @Override
+            protected boolean shouldFetch(@Nullable Character data) {
+                return true; //TODO: timestamp??
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<Character> loadFromDb() {
+                Timber.d("loadFromDb: loading single character");
+                return characterDao.searchCharacter(id);
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<Character>> createCall() {
+                return ServiceGenerator.getRickAndMortyApi().searchCharacter(id);
             }
         }.getAsLiveData();
     }
