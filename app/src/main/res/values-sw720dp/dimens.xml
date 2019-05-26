@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="character_details_image_width">182dp</dimen>
+    <dimen name="character_details_image_height">182dp</dimen>
+    <dimen name="character_details_name_text_size">40sp</dimen>
+    <dimen name="character_details_status_text_size">36sp</dimen>
+    <dimen name="character_details_gender_text_size">36sp</dimen>
+    <dimen name="character_details_status_image_height">50dp</dimen>
+    <dimen name="character_details_status_image_width">50dp</dimen>
+    <dimen name="character_details_gender_image_width">50dp</dimen>
+    <dimen name="character_details_gender_image_height">50dp</dimen>
+    <dimen name="character_details_spacing_pipe_height">48dp</dimen>
+    <dimen name="character_details_spacing_pipe_width">8dp</dimen>
+</resources>

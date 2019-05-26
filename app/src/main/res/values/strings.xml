@@ -1,7 +1,15 @@
 <resources>
-    <string name="app_name">RickAndMortyCharacters</string>
+    <string name="app_name">All Ricks And Morties</string>
     <string name="error_getting_results">Error getting results\nCheck internet connection</string>
-    <string name="search_view_hint">blimblam...</string>
-    <string name="no_more_results">Couldn"'"t find more...</string>
-    <string name="no_connection">Check your connection...</string>
+    <string name="search_view_hint">baby legs…</string>
+    <string name="no_more_results">Couldn"'"t find more…</string>
+    <string name="no_connection">Check your connection…</string>
+    <string name="character_status">STATUS</string>
+    <string name="character_species">SPECIES</string>
+    <string name="character_gender">GENDER</string>
+    <string name="character_origin">ORIGIN</string>
+    <string name="character_last_location">LOCATION</string>
+    <string name="back">BACK</string>
+    <string name="character_details_id">ID: </string>
+    <string name="character_details_created">Created: </string>
 </resources>

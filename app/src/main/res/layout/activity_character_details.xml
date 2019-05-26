@@ -11,17 +11,18 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/character_detail_image"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxWidth="600dp"
-        android:maxHeight="600dp"
-        android:minWidth="320dp"
-        android:minHeight="320dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:maxWidth="800dp"
+        android:maxHeight="800dp"
+        android:adjustViewBounds="true"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/ic_image_placeholder" />
 
 
     <TextView
@@ -62,7 +63,7 @@
                 android:gravity="center_vertical"
                 android:layout_weight="6"
                 android:textColor="#FFFFFF"
-                android:text="STATUS"/>
+                android:text="@string/character_status"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/character_details_status"
@@ -95,7 +96,7 @@
                 android:gravity="center_vertical"
                 android:layout_weight="6"
                 android:textColor="#FFFFFF"
-                android:text="SPECIES"/>
+                android:text="@string/character_species"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/character_details_species"
@@ -129,7 +130,7 @@
                 android:gravity="center_vertical"
                 android:layout_weight="6"
                 android:textColor="#FFFFFF"
-                android:text="GENDER"/>
+                android:text="@string/character_gender"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/character_details_gender"
@@ -163,7 +164,7 @@
                 android:gravity="center_vertical"
                 android:layout_weight="6"
                 android:textColor="#FFFFFF"
-                android:text="ORIGIN"/>
+                android:text="@string/character_origin"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/character_details_origin"
@@ -196,7 +197,7 @@
                 android:gravity="center_vertical"
                 android:layout_weight="1"
                 android:textColor="#FFFFFF"
-                android:text="LAST LOCATION"/>
+                android:text="@string/character_last_location"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/character_details_last_location"
@@ -222,7 +223,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:text="BACK"
+        android:text="@string/back"
         app:layout_constraintStart_toEndOf="@id/backArrow"
         app:layout_constraintTop_toTopOf="@id/backArrow"
         app:layout_constraintBottom_toBottomOf="@id/backArrow"
@@ -240,8 +241,6 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:alpha="0.28"
-        android:background="#B0007983"
         android:orientation="vertical"
         android:layout_marginTop="8dp"
         android:padding="8dp"
@@ -252,76 +251,44 @@
         app:layout_constraintTop_toBottomOf="@id/linear"
         app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Id: 343"
-            android:textColor="#FFFFFF" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_details_id"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/character_details_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="331"
+                android:textColor="#000000" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_details_created"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/character_details_created_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2015-04-03"
+                android:textColor="#000000" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Created: 2015-04-03"
-            android:textColor="#FFFFFF" />
+
+
 
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
-
-
-
-<!--<TextView-->
-<!--android:layout_width="wrap_content"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:text="adadsadasdad"-->
-<!--android:textSize="40sp" />-->
-
-<!--<TextView-->
-<!--android:layout_width="wrap_content"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:text="adadsadasdad"-->
-<!--android:textSize="40sp" />-->
-
-<!--<TextView-->
-<!--android:layout_width="wrap_content"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:text="adadsadasdad"-->
-<!--android:textSize="40sp" />-->
-
-<!--<TextView-->
-<!--android:layout_width="wrap_content"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:text="adadsadasdad"-->
-<!--android:textSize="40sp" />-->
-
-<!--<TextView-->
-<!--android:layout_width="wrap_content"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:text="adadsadasdad"-->
-<!--android:textSize="40sp" />-->
-
-<!--<TextView-->
-<!--android:layout_width="wrap_content"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:text="adadsadasdad"-->
-<!--android:textSize="40sp" />-->
-
-<!--<TextView-->
-<!--android:layout_width="wrap_content"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:text="adadsadasdad"-->
-<!--android:textSize="40sp" />-->
-
-<!--<TextView-->
-<!--android:layout_width="wrap_content"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:text="adadsadasdad"-->
-<!--android:textSize="40sp" />-->
-
-<!--<TextView-->
-<!--android:layout_width="wrap_content"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:text="adadsadasdad"-->
-<!--android:textSize="40sp" />-->

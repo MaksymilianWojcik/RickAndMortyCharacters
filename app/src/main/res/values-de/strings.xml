@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RickAndMortyCharacters</string>
+    <string name="error_getting_results">Fehler beim Empfang der Ergebnisse</string>
+    <string name="search_view_hint">"baby "</string>
+    <string name="no_more_results">Konnte nicht mehr finden</string>
+    <string name="no_connection">Prüfe deine Internetverbindung</string>
+    <string name="character_species">SPEZIES</string>
+    <string name="character_status">STATUS</string>
+    <string name="character_gender">GESCHLECHT</string>
+    <string name="character_origin">URSPRUNG</string>
+    <string name="character_last_location">ORTUNG</string>
+    <string name="back">ZURÜCK</string>
+    <string name="character_details_id">ID: </string>
+    <string name="character_details_created">Erstellt: </string>
+</resources>

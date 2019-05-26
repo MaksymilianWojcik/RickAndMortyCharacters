@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RickAndMortyCharacters</string>
+    <string name="error_getting_results">Brak wyników. Sprawdź połączenie z internetem</string>
+    <string name="search_view_hint">baby legs…</string>
+    <string name="no_more_results">Nie znalazłem więcej postaci...</string>
+    <string name="no_connection">Sprawdź połączenie z internetem</string>
+    <string name="character_status">STATUS</string>
+    <string name="character_species">GATUNEK</string>
+    <string name="character_gender">PŁEC</string>
+    <string name="character_origin">POCHODZENIE</string>
+    <string name="character_last_location">LOKALIZACJA</string>
+    <string name="back">COFNIJ</string>
+    <string name="character_details_id">ID: </string>
+    <string name="character_details_created">Dodano: </string>
+</resources>
