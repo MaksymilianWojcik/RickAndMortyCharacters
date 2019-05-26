@@ -7,8 +7,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import pl.com.bubka.rickandmortycharacters.models.Character;
+import pl.com.bubka.rickandmortycharacters.models.Location;
 
-@Database(entities = {Character.class}, version = 1)
+@Database(entities = {Character.class, Location.class}, version = 1)
 @TypeConverters({Converters.class})
 public abstract class CharacterDatabase extends RoomDatabase {
 
@@ -25,7 +26,9 @@ public abstract class CharacterDatabase extends RoomDatabase {
         return instance;
     }
 
-    //nie potrzebny prywatny konstruktor, w koncu to klasa abtrakcyjna
-
     public abstract CharacterDao getCharacterDao();
+
+    public abstract EpisodeDao getEpisodeDao();
+
+    public abstract LocationDao getLocationDao();
 }

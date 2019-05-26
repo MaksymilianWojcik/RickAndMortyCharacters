@@ -34,5 +34,5 @@ public interface CharacterDao {
     LiveData<List<Character>> searchCharacters(String name, int pageNumber);
 
     @Query("SELECT * FROM characters WHERE character_id = :character_id")
-    LiveData<Character> getCharacter(String character_id);
+    LiveData<Character> searchCharacter(String character_id);
 }

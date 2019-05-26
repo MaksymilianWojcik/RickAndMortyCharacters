@@ -23,11 +23,11 @@ public class Location {
     @ColumnInfo(name = "created_date")
     @SerializedName("created")
     String createdDate;
-    List<String> residents; //TODO transform every string url form list into character or at least id
+    String[] residents; //TODO transform every string url form list into character or at least id
 
     public Location(){}
 
-    public Location(@NonNull String id, String name, String type, String dimension, String url, String createdDate, List<String> residents) {
+    public Location(@NonNull String id, String name, String type, String dimension, String url, String createdDate, String[] residents) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -86,11 +86,11 @@ public class Location {
         this.createdDate = createdDate;
     }
 
-    public List<String> getResidents() {
+    public String[] getResidents() {
         return residents;
     }
 
-    public void setResidents(List<String> residents) {
+    public void setResidents(String[] residents) {
         this.residents = residents;
     }
 }
