@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.com.bubka.rickandmortycharacters.BaseActivity;
 import pl.com.bubka.rickandmortycharacters.R;
 import pl.com.bubka.rickandmortycharacters.models.Character;
 import pl.com.bubka.rickandmortycharacters.viewmodels.CharacterDetailsViewModel;
@@ -17,7 +18,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-public class CharacterDetailsActivity extends AppCompatActivity {
+public class CharacterDetailsActivity extends BaseActivity {
 
     @BindView(R.id.character_detail_image) ImageView characterImageView;
     @BindView(R.id.character_details_name) TextView vName;
@@ -59,7 +60,7 @@ public class CharacterDetailsActivity extends AppCompatActivity {
         vOrigin.setText(character.getOrigin().getName());
         vLocation.setText(character.getLastLocation().getName());
         vId.setText(character.getCharacter_id());
-        vCreatedDate.setText(character.getCreatedDate());
+        vCreatedDate.setText(character.getCreatedDate().substring(0, 10));
     }
 
     //TODO new request to get episodes, onClick on episode redirects to EpisodeDetailsActivity showing all characters from it
