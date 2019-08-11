@@ -24,7 +24,6 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     private static final int LOADING_TYPE = 2;
     private static final int EXHAUSTED_TYPE = 3;
     private static final int NO_CONNECTION_TYPE = 4;
-    private static final int LOCATIONS_TYPE = 5; //TODO: Locations
 
 
     private List<Character> characterList;
@@ -108,7 +107,8 @@ public class CharactersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
 
     public void setQueryExhausted() {
         hideLoading();
-        if(characterList.get(characterList.size() - 1).getName().equals(EXHAUSTED_TYPE_TEXT)) return;
+        if (characterList.size() > 0 && characterList.get(characterList.size() - 1).getName().equals(EXHAUSTED_TYPE_TEXT))
+            return;
         Character exhausted = new Character();
         exhausted.setName(EXHAUSTED_TYPE_TEXT);
         characterList.add(exhausted);
