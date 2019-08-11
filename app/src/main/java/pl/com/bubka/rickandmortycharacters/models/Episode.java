@@ -7,6 +7,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "episodes")
@@ -20,7 +21,9 @@ public class Episode {
     @SerializedName("air_date")
     String airDate;
     String episode;
-    List<Character> charactersList;
+    @SerializedName("characters")
+    @Ignore //TODO: Handle it and best would be to store as id
+    List<String> characterUrlList;
     String url;
     @ColumnInfo(name = "created_date")
     @SerializedName("created")
@@ -28,12 +31,12 @@ public class Episode {
 
     public Episode() {}
 
-    public Episode(@NonNull String id, String name, String airDate, String episode, List<Character> charactersList, String url, String createdDate) {
+    public Episode(@NonNull String id, String name, String airDate, String episode, List<String> characterUrlList, String url, String createdDate) {
         this.id = id;
         this.name = name;
         this.airDate = airDate;
         this.episode = episode;
-        this.charactersList = charactersList;
+        this.characterUrlList = characterUrlList;
         this.url = url;
         this.createdDate = createdDate;
     }
@@ -71,12 +74,12 @@ public class Episode {
         this.episode = episode;
     }
 
-    public List<Character> getCharactersList() {
-        return charactersList;
+    public List<String> getCharacterUrlList() {
+        return characterUrlList;
     }
 
-    public void setCharactersList(List<Character> charactersList) {
-        this.charactersList = charactersList;
+    public void setCharacterUrlList(List<String> characterUrlList) {
+        this.characterUrlList = characterUrlList;
     }
 
     public String getUrl() {
