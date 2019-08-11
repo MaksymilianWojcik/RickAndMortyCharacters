@@ -110,10 +110,10 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                if (!recyclerView.canScrollVertically(1) //TODO: Sprawdzic czy to dziala
+                if (!recyclerView.canScrollVertically(1)
                         && !adapter.getSelectedCharacter(adapter.getItemCount()-1).getName().equals(EXHAUSTED_TYPE_TEXT)
                         && !adapter.getSelectedCharacter(adapter.getItemCount()-1).getName().equals(NO_CONNECTION_TYPE_TEXT)) {
-                    //TODO: block incrementing next page whe nno internet and when viewing catgories
+                    //TODO: block incrementing next page when no internet and no more results
                     charactersListViewModel.searchNextPage();
                 }
             }
