@@ -3,7 +3,6 @@ package pl.com.bubka.rickandmortycharacters.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -30,6 +29,8 @@ import pl.com.bubka.rickandmortycharacters.utils.SpacingItemDecorator;
 import pl.com.bubka.rickandmortycharacters.viewmodels.CharactersListViewModel;
 import timber.log.Timber;
 
+import static pl.com.bubka.rickandmortycharacters.adapters.CharactersRecyclerAdapter.EXHAUSTED_TYPE_TEXT;
+import static pl.com.bubka.rickandmortycharacters.adapters.CharactersRecyclerAdapter.NO_CONNECTION_TYPE_TEXT;
 import static pl.com.bubka.rickandmortycharacters.views.CharacterDetailsActivity.INTENT_EXTRA_CHARACTER;
 
 public class CharactersListActivity extends BaseActivity implements OnCharacterClickListener {
@@ -70,7 +71,7 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
                             case LOADING:
                                 if (charactersListViewModel.getPageNumber() > 1
                                         && adapter.getSelectedCharacter(adapter.getItemCount()-1) != null
-                                        && !adapter.getSelectedCharacter(adapter.getItemCount()-1).getName().equals("EXHAUSTED...")) {
+                                        && !adapter.getSelectedCharacter(adapter.getItemCount()-1).getName().equals(EXHAUSTED_TYPE_TEXT)) {
                                     adapter.displayLoading();
                                 } else if (charactersListViewModel.getPageNumber() == 1){
                                     adapter.displayOnlyLoading();
@@ -109,7 +110,10 @@ public class CharactersListActivity extends BaseActivity implements OnCharacterC
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                if (!recyclerView.canScrollVertically(1)) {
+                if (!recyclerView.canScrollVertically(1) //TODO: Sprawdzic czy to dziala
+                        && !adapter.getSelectedCharacter(adapter.getItemCount()-1).getName().equals(EXHAUSTED_TYPE_TEXT)
+                        && !adapter.getSelectedCharacter(adapter.getItemCount()-1).getName().equals(NO_CONNECTION_TYPE_TEXT)) {
+                    //TODO: block incrementing next page whe nno internet and when viewing catgories
                     charactersListViewModel.searchNextPage();
                 }
             }

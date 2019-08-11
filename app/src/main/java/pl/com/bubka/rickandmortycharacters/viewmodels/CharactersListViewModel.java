@@ -17,7 +17,6 @@ import timber.log.Timber;
 public class CharactersListViewModel extends AndroidViewModel {
 
     public static final String QUERY_EXHAUSTED = "No more results.";
-    private static final String TAG = "CharactersListViewModel";
 
     private boolean isQueryExhausted;
     private boolean isPerformingQuery;
